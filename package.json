@@ -1,0 +1,13 @@
+{
+  "name": "md-label-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline Chinese-first MiniDisc label studio",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/unit.mjs",
+    "build": "node build.mjs",
+    "serve": "python3 -m http.server 8080 --bind 127.0.0.1"
+  }
+}

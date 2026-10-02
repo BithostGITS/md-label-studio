@@ -1,0 +1,7 @@
+dist/
+node_modules/
+*.zip
+.DS_Store
+tests/artifacts/
+artifacts/
+.env*

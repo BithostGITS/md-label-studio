@@ -1,0 +1,135 @@
+{
+  "description": "Explicit public allowlist; excludes this manifest itself.",
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 70,
+      "sha256": "cc8d631346d2947a3423c1d20bd355e23c5d040f9593b00bf384aca127916f5f"
+    },
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1416,
+      "sha256": "56e6fa1b2e53fe260cccac933959aed871bd0538ef05d3ae185436016e028242"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8196,
+      "sha256": "ecf7d4e11974c5d7e7567fa6ee5060f08380aeff0ed20ff89183c156556d8f22"
+    },
+    {
+      "path": "app.mjs",
+      "bytes": 13978,
+      "sha256": "6132e4e36cd7863614d7dd705ec2e505ec78f6b01f2940037986b9c6c8f2538c"
+    },
+    {
+      "path": "assets/fonts/README.md",
+      "bytes": 2004,
+      "sha256": "cd698d7cdeadbf5e96272812d3c1ccf059d61d0456103ea1ecb77230a64ea809"
+    },
+    {
+      "path": "assets/fonts/atkinson-OFL.txt",
+      "bytes": 4352,
+      "sha256": "f32d22b3908fcad2c86a74000614ec22e6a7f66ea7e867e616026a27aebdc143"
+    },
+    {
+      "path": "assets/fonts/atkinson.woff2",
+      "bytes": 23772,
+      "sha256": "0178bd1ad14c54fedb6237abd8d39892ea46bb07febf21ce31907197feee2e45"
+    },
+    {
+      "path": "assets/fonts/b612-OFL.txt",
+      "bytes": 4470,
+      "sha256": "a815f65bc72d90494b01842d3171f7cb0f9f935e023d9cc260904d221ef1064a"
+    },
+    {
+      "path": "assets/fonts/b612.woff2",
+      "bytes": 37792,
+      "sha256": "52003bfb7a7be2274bc0a85f082ee009c88ae50b52b90c34f80c0edf83b6fec7"
+    },
+    {
+      "path": "assets/fonts/manifest.json",
+      "bytes": 120188,
+      "sha256": "c25320df525498d5d555477a78dba8abe542a5d59dfe2ced49c0440ecd592a2d"
+    },
+    {
+      "path": "assets/fonts/noto-sans-OFL.txt",
+      "bytes": 4388,
+      "sha256": "1c05c68c34f9708415aada51f17e1b0092d2cea709bf4a94cd38114f9e73d7d9"
+    },
+    {
+      "path": "assets/fonts/noto-sans.woff2",
+      "bytes": 4280300,
+      "sha256": "debc2b8aa79c70dcba3cd5a920f1ab630a158aa2a886815b4bc360bd5d458a49"
+    },
+    {
+      "path": "assets/fonts/noto-serif-OFL.txt",
+      "bytes": 4350,
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6"
+    },
+    {
+      "path": "assets/fonts/noto-serif.woff2",
+      "bytes": 5798028,
+      "sha256": "c86d55a35307449af65883fb8fd63130f359c6ac7e31c2cce923da6a7504c436"
+    },
+    {
+      "path": "assets/fonts/wenkai-OFL.txt",
+      "bytes": 4390,
+      "sha256": "4fff27d35db0e22cd81d58da6f20e09f415cf354a3338e3cf1fc0eb9222c7174"
+    },
+    {
+      "path": "assets/fonts/wenkai.woff2",
+      "bytes": 4921512,
+      "sha256": "6f318ceeb4690bc6ef288f3c3dfe8dc57d4cba71fcd802fa67e389ae08346bbb"
+    },
+    {
+      "path": "build.mjs",
+      "bytes": 2677,
+      "sha256": "56b9f17c4790733ed785c538e8ca4c5e0c0a1dea78479916111c432ecfd664aa"
+    },
+    {
+      "path": "geometry.mjs",
+      "bytes": 4859,
+      "sha256": "d0ad19591d933dba2dc4e07e0db4b342ae7b333b62a9b18212032499587c706b"
+    },
+    {
+      "path": "image-input.mjs",
+      "bytes": 1279,
+      "sha256": "b4f737425eb1c6a5b35d8c6b02a222c325e43446d4f472538c7e73ec63fde076"
+    },
+    {
+      "path": "index.html",
+      "bytes": 10939,
+      "sha256": "16ce2eaca03ff44bc62252981302ba42f04bedd54cbeeda436e46ef8f59e4911"
+    },
+    {
+      "path": "package.json",
+      "bytes": 323,
+      "sha256": "d4934f178397423d535a25ed8d2a579e2747c80a21a57db289be4f076c8c3349"
+    },
+    {
+      "path": "png.mjs",
+      "bytes": 1617,
+      "sha256": "b8fb2b1b40967c538d6c749d0ab5d44a849bf655c3cb8604bd49d0ad28a75482"
+    },
+    {
+      "path": "render.mjs",
+      "bytes": 10642,
+      "sha256": "25ef75ef8e2f2ba51e5bc0f35cc8473080db7ce607fff5c95b0ad4cff23e66c9"
+    },
+    {
+      "path": "style.css",
+      "bytes": 9938,
+      "sha256": "9ce030eca08a3f6b2bb6bd7d0e05a58ffb10372e1e9455c43c014b0be6507cd3"
+    },
+    {
+      "path": "tests/unit.mjs",
+      "bytes": 3964,
+      "sha256": "22fcf1319702762a65d453d574f2f9c3a07d982a985bcd67dac445ae0a367f9a"
+    }
+  ]
+}

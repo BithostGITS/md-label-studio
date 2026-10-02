@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#164e48"><meta name="description" content="离线、本地处理的 MiniDisc 正面与书脊标签工作室。两套标签、精确毫米布局、300 DPI PNG 与打印校准。"><title>刻录之后 · MiniDisc 标签工作室</title><link rel="stylesheet" href="./style.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23164e48'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23f4eddf' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23eea67b'/%3E%3C/svg%3E"><script type="module" src="./app.mjs"></script></head>
+<body>
+<header class="masthead"><a href="./" class="brand" aria-label="刻录之后首页"><span class="disc-icon" aria-hidden="true"></span><span>刻录之后<small>MINIDISC LABEL STUDIO</small></span></a><div class="local-badge"><span></span>本地处理 · 不上传封面</div></header>
+<main>
+<section class="intro"><div><p class="eyebrow">FOR THE MUSIC YOU KEEP</p><h1>给珍藏的声音，<br class="mobile-break">一个好看的名字。</h1><p class="lede">从专辑封面到一张可裁切的标签。两套独立设计，一次打印。</p></div><span class="edition">38 × 54<br><small>原版布局 / mm</small></span></section>
+<div class="workspace">
+<section class="editor panel" aria-label="标签编辑器">
+<div class="section-heading"><h2><span>01</span> 编辑标签</h2><span class="muted">两套内容互不影响</span></div>
+<div class="set-tabs" role="tablist" aria-label="选择标签套装"><button id="set-a" role="tab" aria-selected="true" data-set="0">A <span>第一套</span></button><button id="set-b" role="tab" aria-selected="false" data-set="1">B <span>第二套</span></button></div>
+<form id="editor-form" novalidate>
+<div class="fields"><label>专辑名称 <span>ALBUM</span><input id="album" maxlength="2000" autocomplete="off"></label><div class="field-row"><label>艺术家 <span>ARTIST</span><input id="artist" maxlength="2000" autocomplete="off"></label><label class="year-field">年份 <span>YEAR</span><input id="year" maxlength="100" autocomplete="off"></label></div></div>
+<div class="upload"><div><strong>专辑封面</strong><p id="art-info">原创几何封面 · 无版权素材复用</p><p>等比完整显示，不裁切 · JPG / PNG / WebP</p></div><label class="button secondary upload-button">选择图片<input id="art-file" type="file" accept="image/png,image/jpeg,image/webp" aria-label="上传本地封面"></label></div>
+<div class="inline-actions"><button type="button" id="random" class="text-button">↻ 换一张原创示例</button><button type="button" id="clear-art" class="text-button">移除封面</button></div>
+<div class="divider"></div>
+<div class="field-row"><label>拉丁字体<select id="latin"><option value="atkinson">Atkinson · Futura 替代</option><option value="b612">B612</option></select></label><label>中文字体<select id="cjk"><option value="noto-sans">Noto Sans SC · 黑体</option><option value="noto-serif">Noto Serif SC · 宋体</option><option value="wenkai">LXGW WenKai TC · 文楷</option></select></label></div>
+<fieldset class="theme-options"><legend>标签配色</legend><label><input type="radio" name="theme" value="dark"><span class="swatch dark"></span>深色</label><label><input type="radio" name="theme" value="light"><span class="swatch light"></span>浅色</label></fieldset>
+<div class="check-row"><label><input id="uppercase" type="checkbox">英文字母大写</label><label><input id="hide-header" type="checkbox">隐藏插入提示</label></div>
+<p class="hint">隐藏提示会将封面上移 5 mm，并增加下方文字区域。书脊只显示专辑与艺术家。</p>
+<details class="size-details" open><summary>正面与书脊尺寸 <span>mm</span></summary><label>正面尺寸方案<select id="profile"><option value="original">原版布局 · 38 × 54 mm</option><option value="vendor">厂商贴纸 · 32 × 52 mm</option><option value="sony">Sony 社区实测 · 35.75 × 52.75 mm</option><option value="custom">自定义实测尺寸</option></select></label><p id="profile-note" class="hint"></p><div class="field-row" id="custom-size" hidden><label>正面宽度<input id="front-w" type="number" min="10" max="85" step="0.05"></label><label>正面高度<input id="front-h" type="number" min="15" max="120" step="0.05"></label></div><div class="field-row"><label>书脊长度<input id="spine-w" type="number" min="20" max="85" step="0.1"></label><label>书脊高度<input id="spine-h" type="number" min="2" max="10" step="0.1"></label></div><p class="hint">默认 58 × 3.5 mm，依据 Elecom 背标签规格；请核对自己的盘壳。所有标签含 0.10 mm 内置裁切线。</p></details>
+</form>
+</section>
+<section class="preview-panel panel" aria-label="预览和导出">
+<div class="section-heading"><h2><span>02</span> 实时预览</h2><button id="redraw" class="text-button">↻ 重绘</button></div>
+<div class="preview-tabs" role="tablist" aria-label="预览模式"><button role="tab" aria-selected="true" data-view="label">当前标签</button><button role="tab" aria-selected="false" data-view="sheet">两套排版</button><button role="tab" aria-selected="false" data-view="calibration">校准标尺</button></div>
+<div class="preview-stage" id="preview-stage"><div class="preview-content"><canvas id="preview" aria-label="当前标签预览"></canvas><canvas id="spine-preview" aria-label="书脊预览"></canvas></div><span class="stage-mark">300 DPI / LOCAL EDITION</span></div>
+<div class="preview-caption"><strong id="preview-caption">正在载入字体…</strong><span>屏幕显示非实际尺寸</span></div>
+<p id="render-status" role="status" aria-live="polite">正在准备离线字体…</p><p id="error" role="alert" hidden></p>
+<div class="export-block"><div class="section-heading"><h2><span>03</span> 导出设计</h2><span class="format-tag">PNG · 300 DPI</span></div>
+<div class="export-pair"><button id="export-front" class="button primary" disabled>下载正面标签</button><button id="export-spine" class="button secondary" disabled>下载书脊标签</button></div>
+<label class="export-mode">正面导出方式<select id="export-mode"><option value="compat">原版像素截断 · 448 × 637 px</option><option value="physical">真实毫米取整 · 按当前尺寸</option></select></label>
+<p id="export-note" class="hint">原版模式由源码推导，尚未取得原站真实 PNG 验证。38 × 54 mm 的真实毫米导出为 449 × 638 px。</p>
+<button id="export-sheet" class="button primary sheet-button" disabled>下载两套排版 · SELPHY</button><div class="inline-actions"><button id="export-manifest" class="text-button" disabled>下载几何清单 JSON</button><button id="save-project" class="text-button">保存项目</button><label class="text-button file-label">载入项目<input id="load-project" type="file" accept="application/json,.json" aria-label="载入本地项目"></label></div>
+</div>
+</section>
+<section class="print-panel panel" aria-label="纸张和打印校准"><div class="section-heading"><h2><span>04</span> 纸张与打印校准</h2><span class="format-tag">先测量，再裁切</span></div><div class="print-grid"><div><label>打印纸张<select id="paper"><option value="selphy">SELPHY 明信片 · 成品 100 × 148 mm</option><option value="inch">真正 4 × 6 英寸 · 101.6 × 152.4 mm</option></select></label><p class="hint">SELPHY 撕边后的成品是 100 × 148 mm（1181 × 1748 px），不是 4 × 6 英寸。不要提前撕掉进纸用的打孔边。</p><div id="calibration-warning" class="warning">未校准 · X / Y = 1。无边距打印可能放大，有边距打印可能缩小；两者都不保证实物等大。</div></div><div><label class="calibration-toggle"><input id="calibrated" type="checkbox">使用基于实测的双轴补偿</label><div class="field-row"><label>横向 50 mm 实测为<input id="measured-x" type="number" min="35" max="75" step="0.01" value="50"><span class="unit-note">mm · 未补偿的测试纸</span></label><label>纵向 50 mm 实测为<input id="measured-y" type="number" min="35" max="75" step="0.01" value="50"><span class="unit-note">mm · 未补偿的测试纸</span></label></div><p id="factor-note" class="hint">补偿系数 = 目标 50 ÷ 实测长度；标签及裁切线围绕纸张中心一起变换，画布保持全尺寸。</p><button id="export-calibration" class="button secondary" disabled>下载未补偿校准测试纸</button></div></div><details><summary>怎样得到正确的实物尺寸？</summary><ol class="instructions"><li>选择实际纸张。用将来正式打印的同一台打印机、应用、边距和缩放设置打印<strong>未补偿</strong>测试纸。</li><li>测试纸的横向和纵向标尺都为居中 50 mm。分别测量两端长刻线之间的距离，填入上方并开启补偿。</li><li>导出两套排版并试印验证，实测正面与书脊。请勿把已补偿纸张的测量值当成初次标尺值。更换打印路径后重新校准。</li><li>有边距模式下发生的缩小<strong>不能</strong>视为精确适配。DPI 元数据仅表达预期比例，不代表打印机一定遵守。尚无实物验证或通用补偿常数。</li></ol></details></section>
+</div>
+<section class="about"><h2>独立制作，诚实标注。</h2><p>依据公开参考报告独立实现原站控件与几何；未复制原应用代码、专辑封面、MiniDisc 标志或 Adobe 字体套件。插入提示使用原创「MD / INSERT」文字图标；Futura 以 OFL Atkinson Hyperlegible 替代，字形与原站并不完全一致。</p><details><summary>字体、版权与已知边界</summary><p>五款字体均本地打包，保留 SIL OFL 1.1 授权。Noto 两款固定为 600 字重；文楷使用覆盖简繁中文的 TC 版本。转换后的内部字体名为 MD Studio 系列。每次导出检查实际字体载入和字符覆盖；无法显示的字符会阻止导出，而不是悄悄使用系统字体。长文字沿用原版换行与区域截断，不自动缩小。</p><ul id="font-status"></ul><p>实际打印与原站像素对比仍待验证。厂商和社区尺寸并非所有盘壳通用；Sony 方案不模拟切角。校准和尺寸仅表达软件几何，必须先试印。</p><a href="./README.md">使用与实现说明</a> · <a href="./assets/fonts/README.md">字体来源与授权</a> · <a href="./LICENSE">代码许可</a></details></section>
+</main><footer><span>刻录之后 / MADE FOR YOUR MIXTAPES</span><span>离线资源 · 独立设计 · 不设服务器</span></footer>
+<noscript>本工具需要启用 JavaScript 才能本地绘制和导出标签；不会上传文件。</noscript>
+</body></html>
