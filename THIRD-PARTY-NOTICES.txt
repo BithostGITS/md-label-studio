@@ -1,0 +1,18 @@
+Third-party MiniDisc logo — rights reserved
+
+Asset: assets/branding/minidisc.png (44 x 43 pixels)
+Source: https://md-label.jkap.io/md-logo.dcf23458.png
+Archived reference retrieved 2026-10-02; reproduced unchanged.
+
+MiniDisc and its logo are trademarks associated with Sony Corporation.
+The logo artwork remains the property of its respective rights holder(s).
+All rights reserved. It is NOT covered by this application's MIT license,
+nor by the SIL Open Font License for bundled fonts. No redistribution
+license or permission from the rights holder has been verified or is
+claimed. Inclusion for MiniDisc label identification does not imply
+endorsement, affiliation, or a grant of rights to downstream users.
+Users are responsible for assessing rights for their intended use.
+
+Application code and procedural sample covers: MIT (see LICENSE).
+Bundled fonts: their individual SIL OFL notices in assets/fonts/.
+No reference application code or commercial album covers are included.

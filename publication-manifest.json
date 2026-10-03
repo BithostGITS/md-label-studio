@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist; excludes this manifest itself.",
+  "description": "Explicit public allowlist; excludes this manifest itself. MiniDisc logo rights reserved separately. No reference app, album art, or private artifacts.",
   "files": [
     {
       "path": ".gitignore",
@@ -18,13 +18,23 @@
     },
     {
       "path": "README.md",
-      "bytes": 8196,
-      "sha256": "ecf7d4e11974c5d7e7567fa6ee5060f08380aeff0ed20ff89183c156556d8f22"
+      "bytes": 8420,
+      "sha256": "83888ee2e29cc686076233b4faeaec1c2c251f6cc71f82e5d4eee0efda679ffd"
+    },
+    {
+      "path": "THIRD-PARTY-NOTICES.txt",
+      "bytes": 983,
+      "sha256": "806f80a3decf2ce8caac604a78325764b617c82e7d3ac84ed8d5ca5294a60a79"
     },
     {
       "path": "app.mjs",
       "bytes": 13978,
       "sha256": "6132e4e36cd7863614d7dd705ec2e505ec78f6b01f2940037986b9c6c8f2538c"
+    },
+    {
+      "path": "assets/branding/minidisc.png",
+      "bytes": 2124,
+      "sha256": "a703d7eae2c0166bc5d942e97356ea465402725d57c75d279c9d72660508ed12"
     },
     {
       "path": "assets/fonts/README.md",
@@ -88,8 +98,8 @@
     },
     {
       "path": "build.mjs",
-      "bytes": 2677,
-      "sha256": "56b9f17c4790733ed785c538e8ca4c5e0c0a1dea78479916111c432ecfd664aa"
+      "bytes": 2734,
+      "sha256": "b5a675a71cc0a8280476bd06f0a280ac92dadc8531e42a6a1ef393658177ebc4"
     },
     {
       "path": "geometry.mjs",
@@ -103,8 +113,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 10939,
-      "sha256": "16ce2eaca03ff44bc62252981302ba42f04bedd54cbeeda436e46ef8f59e4911"
+      "bytes": 11057,
+      "sha256": "7c25ed0434ebb323b7de69c03b14c2da826caec75371ed89304828368a162e09"
     },
     {
       "path": "package.json",
@@ -118,8 +128,8 @@
     },
     {
       "path": "render.mjs",
-      "bytes": 10642,
-      "sha256": "25ef75ef8e2f2ba51e5bc0f35cc8473080db7ce607fff5c95b0ad4cff23e66c9"
+      "bytes": 11671,
+      "sha256": "fc512cf7ac161e2696dfd5b4084dabc412abfe2966c1954c3b4e16c1d8b95880"
     },
     {
       "path": "style.css",

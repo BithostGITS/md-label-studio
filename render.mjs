@@ -25,14 +25,28 @@ export async function getArtwork(art){if(!art||art.type==='none')return null;con
  assertStillImage(Uint8Array.from(atob(art.data.split(',')[1]),c=>c.charCodeAt(0)));
  const pending=new Promise((resolve,reject)=>{const img=new Image();const timeout=setTimeout(()=>reject(Error('封面解码超时')),15000);img.onload=()=>{clearTimeout(timeout);if(img.naturalWidth*img.naturalHeight>64000000||!img.naturalWidth){reject(Error('图片超过 6400 万像素或没有有效尺寸'));return;}resolve(img);};img.onerror=()=>{clearTimeout(timeout);reject(Error('无法解码封面；请重新选择有效的 PNG / JPEG / WebP'));};img.src=art.data;});images.set(key,pending);try{return await pending;}catch(e){images.delete(key);throw e;}
 }
-export async function prepare(set){checkFonts(set);return getArtwork(set.art);}
+let logoImage,logoPending;
+export function loadLogo(){
+ if(logoImage)return Promise.resolve(logoImage);
+ if(logoPending)return logoPending;
+ logoPending=new Promise((resolve,reject)=>{
+  const image=new Image();let done=false;
+  const finish=(error)=>{if(done)return;done=true;clearTimeout(timeout);image.onload=image.onerror=null;if(error){reject(error);return;}logoImage=image;resolve(image);};
+  const timeout=setTimeout(()=>finish(Error('MiniDisc 标志载入超时，请检查本地 assets/branding/minidisc.png')),15000);
+  image.onload=()=>finish(image.naturalWidth===44&&image.naturalHeight===43?null:Error('MiniDisc 标志尺寸无效（应为 44 × 43）'));
+  image.onerror=()=>finish(Error('MiniDisc 标志载入失败，请检查本地 assets/branding/minidisc.png'));
+  image.src=new URL('./assets/branding/minidisc.png',import.meta.url).href;
+ }).catch(error=>{logoPending=null;throw error;});
+ return logoPending;
+}
+export async function prepare(set){checkFonts(set);const [art]=await Promise.all([getArtwork(set.art),set.hideHeader?null:loadLogo()]);return art;}
 /** Word wrapping with character fallback, blank lines retained; no shrink-to-fit. */
 export function wrappedLines(ctx,text,width){const lines=[];for(const paragraph of text.replace(/\r\n?/g,'\n').split('\n')){let line='';const tokens=paragraph.match(/\s+|[^\s]+/gu)||[''];for(const token of tokens){if(ctx.measureText(line+token).width<=width){line+=token;continue;}if(line){lines.push(line.trimEnd());line='';}for(const c of token){if(line&&ctx.measureText(line+c).width>width){lines.push(line);line='';}line+=c;}}lines.push(line.trimEnd());}return lines;}
 export function cutline(ctx,w,h,dark=false){ctx.save();ctx.strokeStyle=dark?'#a7aba4':'#6d786c';ctx.lineWidth=STROKE;ctx.strokeRect(STROKE/2,STROKE/2,w-STROKE,h-STROKE);ctx.restore();}
 export function paintFront(ctx,set,art,bounds){
  const d=frontDimensions(set),w=d.w,h=d.h,dark=set.theme==='dark',bg=dark?'#231F20':'#ffffff',fg=dark?'#ffffff':'#000000';
  ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);ctx.fillStyle=fg;const head=set.hideHeader?0:5,artSize=Math.min(w,h-head-8),artX=(w-artSize)/2;ctx.font=`1.76px ${fontStack(set)}`;ctx.textBaseline='middle';
- if(head){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.fillText('INSERT THIS END',5.5,2.9138,Math.max(4,w-13));ctx.font=`1.45px ${fontStack(set)}`;ctx.textAlign='right';ctx.fillText('MD',w-2,2.55);ctx.textAlign='left';}
+ if(head){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.fillText('INSERT THIS END',5.5,2.9138,Math.max(4,w-13));if(!logoImage)throw Error('MiniDisc 标志尚未就绪');const lw=44/11.811,lh=43/11.811;ctx.drawImage(logoImage,w-2-lw,(5-lh)/2,lw,lh);}
  if(art){const ratio=Math.min(artSize/art.width,artSize/art.height),iw=art.width*ratio,ih=art.height*ratio;ctx.drawImage(art,artX+(artSize-iw)/2,head+(artSize-ih)/2,iw,ih);}
  const boxY=head+artSize,boxH=h-boxY;ctx.font=`1.76px ${fontStack(set)}`;const lines=wrappedLines(ctx,displayText(set,[set.album,set.artist,set.year].join('\n')),w-4),capacity=Math.floor(boxH/2.12),visible=lines.slice(0,capacity);ctx.save();ctx.beginPath();ctx.rect(2,boxY,w-4,boxH-.15);ctx.clip();const y=boxY+(boxH-visible.length*2.12)/2;visible.forEach((line,i)=>ctx.fillText(line,2,y+(i+.5)*2.12));ctx.restore();ctx.restore();cutline(ctx,bounds?.w??w,bounds?.h??h,dark);return {truncated:lines.length>capacity,lineCount:lines.length,capacity};
 }

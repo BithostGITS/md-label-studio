@@ -3,7 +3,7 @@
 [在线使用](https://bithostgits.github.io/md-label-studio/) · [源代码](https://github.com/BithostGITS/md-label-studio)
 
 中文优先、零运行时依赖的静态标签编辑器。所有封面和项目留在本机；无后端、无分析统计、
-无外部字体请求。独立实现，不包含参考网站未经许可的代码或素材。
+无外部字体请求。代码独立实现；原 MiniDisc 标志单独保留权利，见 THIRD-PARTY-NOTICES.txt。
 
 ## 本地运行
 
@@ -83,8 +83,8 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
 
 ## 权利与明确差异
 
-原代码无可验证许可，故全部独立编写。未复用专辑图、官方MiniDisc标志、Adobe kit。
-原站Futura替换为OFL Atkinson；插入头使用普通三角和「MD」文字，不复制品牌图。
+原代码无可验证许可，故全部独立编写。未复用专辑图或 Adobe kit。原 MiniDisc 标志作为本地资源复用，非 MIT/OFL；未声称已获权利人许可。
+原站Futura替换为OFL Atkinson；插入头使用普通三角及原44×43黑白MiniDisc图，不随主题染色。标志右缘为宽度减2mm，y=(5−43/11.811)/2，尺寸44/11.811×43/11.811mm；隐藏头部时不加载或绘制。
 原始四张程序艺术随应用MIT许可；用户上传图片由用户自己确认权利。
 字体转换重命名及许可证、源hash、版本在 `assets/fonts/`；共14.36MiB，无字形裁剪。
 无原站同输入视觉diff；字体、抗锯齿、原版的非法bold font-variant语义与边框等差异不可能声称逐像素一致。
