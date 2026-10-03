@@ -1,7 +1,36 @@
 # 刻录之后 · MiniDisc Label Studio
 
-中文优先、零运行时依赖的静态标签编辑器。所有封面和项目留在本机；无后端、无分析统计、
+六语言界面、零运行时依赖的静态标签编辑器。所有封面和项目留在本机；无后端、无分析统计、
 无外部字体请求。[公开网站](https://bithostgits.github.io/md-label-studio/)。代码独立实现；原 MiniDisc 标志单独保留权利，见 THIRD-PARTY-NOTICES.txt。
+
+## UI languages / 多语言界面
+
+**English is the default.** Use the language selector at the top-right to choose
+**English, 简体中文 (Simplified Chinese), 繁體中文 (Traditional Chinese), Español,
+Français, or 日本語**, in that order. Your choice is saved locally in this browser
+and restored on reload. The page language and accessibility labels follow your
+selection. If browser storage is unavailable, language switching still works for
+the current visit; a new visit defaults to English.
+
+Only the interface changes: your album/artist text, sample content, selected label
+fonts, canvas artwork, geometry, and printed exports stay unchanged. The printed
+insertion/calibration captions retain their existing wording. Download filenames
+are localized; the exported PNG bytes are identical for identical project settings.
+The single `i18n.mjs` module contains all six dictionaries; there are no translation
+services, additional assets, or external requests. Already-loaded pages also support
+language switching without internet access. No service worker or offline first-load
+claim is made.
+
+- **简体中文：** 欢迎！在右上角选择语言；界面切换不会改变标签内容或打印图像。
+- **繁體中文：** 歡迎！在右上角選擇語言；切換介面不會改變標籤內容或列印圖像。
+- **Español:** ¡Bienvenido! Elige el idioma arriba a la derecha; el contenido de las etiquetas y las imágenes impresas no cambian.
+- **Français :** Bienvenue ! Choisissez la langue en haut à droite ; le contenu des étiquettes et les images imprimées restent inchangés.
+- **日本語：** ようこそ！右上で言語を選べます。ラベルの内容や印刷画像は変わりません。
+
+Regression tests: `npm run test:i18n` verifies all UI dictionaries, rendered strings,
+localStorage/reload/default behavior, localized errors, and SHA-256 equality of
+real PNG downloads across all languages. `npm run test:spine` and
+`npm run test:himd` remain available alongside the existing suites.
 
 ## 本地运行
 
@@ -145,10 +174,12 @@ A/B/C/D 始终可独立编辑和导出；两套模式只切片整张纸的 A/B�
 
 ## Hi-MD（每套独立）
 
-勾选 Hi-MD 后，正面在原 MiniDisc 标志左侧增加同尺寸、同外框的
-Hi-MD 标志（原 MiniDisc 像素位置不变）；隐藏头部也隐藏正面两种标志。
-书脊右侧显示水平 Hi-MD 标志，文字按剩余宽度截断，仍按可见字形垂直居中。
-选项默认关闭；v2 项目保存每套 hiMD 布尔值，旧 v1/v2 项目缺省为关闭。
-标志来自 Wikimedia 的 Sony/Minidisc.org 来源位图；正面方框是本应用
-组合稿，并非官方 Sony 方形 Hi-MD 版本。图稿及商标权利保留，见
-THIRD-PARTY-NOTICES.txt；不属于代码 MIT 或字体 OFL 授权。
+勾选 Hi-MD 后，正面在原 MiniDisc 标志左侧显示真实水平 Hi-MD 标志，
+使用应用生成的加宽外框（106×43 源单位），保留原框高度、笔画与边角；
+标志保持原始 272:88 比例，两框间距 0.5 mm。原 MiniDisc 像素位置不变。
+此框是应用设计，不是官方带框变体；不再使用历史方形组合稿。
+隐藏头部也隐藏正面两种标志。书脊右侧使用同一原始水平 Hi-MD 图像，
+文字按剩余宽度截断，按可见字形垂直居中。
+选项默认关闭；v2 项目保存每套 hiMD 布尔值，旧 v1/v2 项目缺省关闭。
+标志来自 Wikimedia 的 Sony/Minidisc.org 来源位图，图稿及商标权利保留，
+见 THIRD-PARTY-NOTICES.txt；不属于代码 MIT 或字体 OFL 授权。

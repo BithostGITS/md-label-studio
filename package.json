@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Offline Chinese-first MiniDisc label studio",
+  "description": "Offline six-language MiniDisc label studio",
   "license": "MIT",
   "scripts": {
     "test": "node tests/unit.mjs",
@@ -14,6 +14,7 @@
     "test:four-set": "node tests/four-set.mjs",
     "test:logo": "node tests/logo.mjs",
     "test:spine": "node tests/spine.mjs",
-    "test:himd": "node tests/himd.mjs"
+    "test:himd": "node tests/himd.mjs",
+    "test:i18n": "node tests/i18n.mjs"
   }
 }

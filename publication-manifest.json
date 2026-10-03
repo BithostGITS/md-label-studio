@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: app/tests, offline fonts/OFL, original horizontal Hi-MD and MiniDisc branding, rights notices. Front rectangular frame derived at runtime from unchanged MiniDisc edge bands; no square Hi-MD composite, covers, local outputs, research or caches.",
+  "description": "Explicit public allowlist: static six-language UI, app and tests, unchanged offline fonts/OFL and original Hi-MD/MiniDisc branding, rights notices. English default, UI-only localization. No runtime translation service, new assets, uploaded covers, reports, local outputs, research or caches.",
   "files": [
     {
       "path": ".gitignore",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 12335,
-      "sha256": "5434c98e4da2fec793c0ec0d74d5f83e2b1c6402b3a2440ecf507409b0e74caf"
+      "bytes": 14536,
+      "sha256": "bbca54bf66471eb34d634226135c24235d2c2b22feea69cd4d6421d7f58546bc"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 15267,
-      "sha256": "697dae6257a20b576beb6dcf481766ec8f0030396936d3de7933cdd44964d7f5"
+      "bytes": 15297,
+      "sha256": "c69955e90a6f07f82978664a09b3ac37990c724eca3d810d96e77437d50b5a82"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -103,43 +103,48 @@
     },
     {
       "path": "build.mjs",
-      "bytes": 2762,
-      "sha256": "b4fcb24e51c21eeec2213bc28986714565ec864c0a15b6342bc6e1a18a73b8ca"
+      "bytes": 2773,
+      "sha256": "d046936b46ab6dd6aadb4190c8856b96db608629708151c212499a0b3efbf19f"
     },
     {
       "path": "geometry.mjs",
-      "bytes": 5162,
-      "sha256": "3b56b679dc13c10216312a8252116d61fa6885fd3541728af2b4517f8ff86071"
+      "bytes": 5024,
+      "sha256": "ae0943942e91dabb6b2b6ffe7244bd4ff2d2de33d8fd7dc21570ef7b9c836bc0"
+    },
+    {
+      "path": "i18n.mjs",
+      "bytes": 88296,
+      "sha256": "6bdc49b59fc0e08fddb6692cbfc851bd1beff5d81037529297b6dc73649fbb86"
     },
     {
       "path": "image-input.mjs",
-      "bytes": 1279,
-      "sha256": "b4f737425eb1c6a5b35d8c6b02a222c325e43446d4f472538c7e73ec63fde076"
+      "bytes": 1222,
+      "sha256": "28e242b11d454835f479c7681b8792080d4d8d051e1605716329db923188b236"
     },
     {
       "path": "index.html",
-      "bytes": 11591,
-      "sha256": "85af105804402478d21ce79b55186d58ed36e815881d3702e862ef5cc7c65e7d"
+      "bytes": 12446,
+      "sha256": "76fb000b711968685622e2b692524146adb2a9c0a13bf5facd1bd64610514e4a"
     },
     {
       "path": "package.json",
-      "bytes": 581,
-      "sha256": "3f8e85acec46396ff21e7589b7697bf517d684444e56534bad8a9cf5db5b326e"
+      "bytes": 620,
+      "sha256": "f1e2a633272499392237fb253a0cf5b450f7cb5118df5dc4c8916933b4db7e58"
     },
     {
       "path": "png.mjs",
-      "bytes": 1617,
-      "sha256": "b8fb2b1b40967c538d6c749d0ab5d44a849bf655c3cb8604bd49d0ad28a75482"
+      "bytes": 1659,
+      "sha256": "bf6352eeac8f6c6903662aa67491b240a3233e3baa743161e2c465bb72fd9ff8"
     },
     {
       "path": "render.mjs",
-      "bytes": 14561,
-      "sha256": "4c0378b78a2725c3a822530c980cf16e3c3f0d6290139d0cb9a85b54357adad2"
+      "bytes": 14055,
+      "sha256": "e9710a33176a564af56567c6c7a551ae393c7f81119ce9171c4f3e510a858982"
     },
     {
       "path": "style.css",
-      "bytes": 10068,
-      "sha256": "ab2a31b09acd661897227b18b310e51343471ff951ff0f1f9b4dea4490bc9308"
+      "bytes": 11380,
+      "sha256": "9393de3e661005b4552f2f814cea35c4dc72e2b1ef782c426c6da85f42553b50"
     },
     {
       "path": "tests/audit-fixes.mjs",
@@ -148,13 +153,13 @@
     },
     {
       "path": "tests/browser.mjs",
-      "bytes": 14392,
-      "sha256": "e8c9fe4ecebdb6ad5b1ebc9fc4dba968c898418d380e18ca8799bb9cdc63547d"
+      "bytes": 14394,
+      "sha256": "3a7fc77079af9d307196d788cdf8073271523ab7e938d5c99fd240718daf0913"
     },
     {
       "path": "tests/fixes.mjs",
-      "bytes": 2474,
-      "sha256": "bcf2522c294e6a5a6bd9f3aba33b99db5938cbd461b3652151897ac33ad579ec"
+      "bytes": 2503,
+      "sha256": "f16190a812266bf6a23e6d5761d32037b198a9da55fb60e8ba4aa2a6b1ba6a9a"
     },
     {
       "path": "tests/four-set.mjs",
@@ -165,6 +170,11 @@
       "path": "tests/himd.mjs",
       "bytes": 18667,
       "sha256": "af382f7d885ca2062e4acfa519c138c28e44cc373f4f4d696fecbaeedd5e7cc8"
+    },
+    {
+      "path": "tests/i18n.mjs",
+      "bytes": 19888,
+      "sha256": "b95f35b0d83bbbe587cb1ad4a39a041133223a7d652fa68779caf3460a64b943"
     },
     {
       "path": "tests/logo.mjs",
