@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: code, offline fonts/OFL, original logo and rights notice only; no covers, sample outputs, research or caches.",
+  "description": "Explicit public allowlist: application code/tests, offline fonts/OFL, MiniDisc and Hi-MD branding plus reserved-rights notices only; no covers, sample outputs, source research or caches. Framed Hi-MD is an application composite, not an official square variant.",
   "files": [
     {
       "path": ".gitignore",
@@ -18,18 +18,28 @@
     },
     {
       "path": "README.md",
-      "bytes": 11687,
-      "sha256": "f8950a4c83eae6ee9f08bca65a8ed963aacf39568690573151506f69f2ffa73b"
+      "bytes": 12335,
+      "sha256": "5434c98e4da2fec793c0ec0d74d5f83e2b1c6402b3a2440ecf507409b0e74caf"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
-      "bytes": 983,
-      "sha256": "806f80a3decf2ce8caac604a78325764b617c82e7d3ac84ed8d5ca5294a60a79"
+      "bytes": 2507,
+      "sha256": "29b3dd30184b1ecb24499833f6bd10146b34a43a9cf8df94900d3c50f6453e0f"
     },
     {
       "path": "app.mjs",
-      "bytes": 15234,
-      "sha256": "a69403d49c2da719e3133113d15555ff003d2b67d561fe80eaeaab6dd0b52a57"
+      "bytes": 15267,
+      "sha256": "697dae6257a20b576beb6dcf481766ec8f0030396936d3de7933cdd44964d7f5"
+    },
+    {
+      "path": "assets/branding/hi-md-framed.png",
+      "bytes": 944,
+      "sha256": "0ef53d2d1192a74041c98f4fb04a1345a499130eebaf91ab14b962b2a5bf0b7c"
+    },
+    {
+      "path": "assets/branding/hi-md.png",
+      "bytes": 1390,
+      "sha256": "0bba37b7df5b973ce62d805a1139bf359ecd50d46a484bd9574e0ddd6a1a8220"
     },
     {
       "path": "assets/branding/minidisc.png",
@@ -98,8 +108,8 @@
     },
     {
       "path": "build.mjs",
-      "bytes": 2734,
-      "sha256": "b5a675a71cc0a8280476bd06f0a280ac92dadc8531e42a6a1ef393658177ebc4"
+      "bytes": 2797,
+      "sha256": "cad7ea9d20e4dff99feb71396a32716b98ffc421871e801c56846eb251d070c4"
     },
     {
       "path": "geometry.mjs",
@@ -113,13 +123,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 11537,
-      "sha256": "e0503fd4682c40542903c4d5c391de3365f88dfd3c20bf4794382e27552d2f4e"
+      "bytes": 11591,
+      "sha256": "85af105804402478d21ce79b55186d58ed36e815881d3702e862ef5cc7c65e7d"
     },
     {
       "path": "package.json",
-      "bytes": 541,
-      "sha256": "a5b7db9f71b426780919e984979facaafb42e6e2b98c561a29e745f003ce0325"
+      "bytes": 581,
+      "sha256": "3f8e85acec46396ff21e7589b7697bf517d684444e56534bad8a9cf5db5b326e"
     },
     {
       "path": "png.mjs",
@@ -128,8 +138,8 @@
     },
     {
       "path": "render.mjs",
-      "bytes": 12084,
-      "sha256": "2b65b0588dc6a7d031b773c1d40c634da8450d3931da97cab4e6856c7ca341e0"
+      "bytes": 13865,
+      "sha256": "0a6cafb0632df216b09dfc4b1bf319d5f61c5c1ba0948627096304d99e0ac1a1"
     },
     {
       "path": "style.css",
@@ -148,13 +158,18 @@
     },
     {
       "path": "tests/fixes.mjs",
-      "bytes": 2398,
-      "sha256": "18dd51c60095081204cc451d39981c615d1bca0e06b157d79d499d8e58488f30"
+      "bytes": 2509,
+      "sha256": "3cf2e737f164aceccc10347b73b2f1169178acab47af97ac4b104047c9e698d7"
     },
     {
       "path": "tests/four-set.mjs",
-      "bytes": 14902,
-      "sha256": "544678da7016e36738e9de5b809ae9c69f5c56cffb43bed302e1315f44be9877"
+      "bytes": 14994,
+      "sha256": "907ec94480b2d9181d0b0fb5534fdd10332d9b16107136181aeabc9517aa5081"
+    },
+    {
+      "path": "tests/himd.mjs",
+      "bytes": 16679,
+      "sha256": "9f98c8384f771e16be5c013f182bf3f1f7ccaae03a86ec0014cc60234445b2f3"
     },
     {
       "path": "tests/logo.mjs",
@@ -168,8 +183,8 @@
     },
     {
       "path": "tests/unit.mjs",
-      "bytes": 4721,
-      "sha256": "ab139ddfdb29b3f184a8dba7deca8d8f352564d2be57f48fc93ae594bc048260"
+      "bytes": 5589,
+      "sha256": "7ca6349650cb7ce067ae5a2748b21919e9bb9b56c74f35f3bb92016a86270970"
     }
   ]
 }

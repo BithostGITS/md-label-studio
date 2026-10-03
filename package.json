@@ -13,6 +13,7 @@
     "test:fixes": "node tests/fixes.mjs",
     "test:four-set": "node tests/four-set.mjs",
     "test:logo": "node tests/logo.mjs",
-    "test:spine": "node tests/spine.mjs"
+    "test:spine": "node tests/spine.mjs",
+    "test:himd": "node tests/himd.mjs"
   }
 }

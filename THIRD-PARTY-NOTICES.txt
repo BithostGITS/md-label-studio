@@ -16,3 +16,28 @@ Users are responsible for assessing rights for their intended use.
 Application code and procedural sample covers: MIT (see LICENSE).
 Bundled fonts: their individual SIL OFL notices in assets/fonts/.
 No reference application code or commercial album covers are included.
+
+Third-party Hi-MD logo — rights reserved
+
+Asset: assets/branding/hi-md.png (272 x 88 pixels, reproduced unchanged)
+Source: https://upload.wikimedia.org/wikipedia/commons/f/fc/Hi-MD_logo.png
+Description: https://commons.wikimedia.org/wiki/File:Hi-MD_logo.png
+Retrieved: 2026-10-03 (curl). Wikimedia credits Sony, Minidisc.org and
+http://www.minidisc.org/keep/Sony_Hi-MD_Spec.pdf as the artwork source.
+SHA-256: 0bba37b7df5b973ce62d805a1139bf359ecd50d46a484bd9574e0ddd6a1a8220
+Asset: assets/branding/hi-md-framed.png (44 x 43 pixels)
+This application-specific composite places the established Hi-MD wordmark
+inside the unchanged outer frame pixels of the MiniDisc reference asset.
+It is NOT an official Sony square Hi-MD logo variant. The spine uses the
+unaltered horizontal source bitmap. Neither mark is recolored by theme.
+
+Hi-MD and its logo are trademarks associated with Sony Corporation.
+The logo artwork remains the property of its respective rights holder(s).
+All rights reserved. It is NOT covered by this application's MIT license,
+nor by the SIL Open Font License for bundled fonts. No redistribution
+license or permission from the rights holder has been verified or is
+claimed. Inclusion for Hi-MD label identification does not imply
+endorsement, affiliation, or a grant of rights to downstream users.
+Users are responsible for assessing rights for their intended use.
+The Commons page's CC-BY-SA-4.0 categorization is recorded as source
+metadata, not asserted here as a verified grant from the rights holder.
