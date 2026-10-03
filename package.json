@@ -1,1 +1,18 @@
-{"name":"md-label-studio","version":"1.0.0","private":true,"type":"module","description":"Offline Chinese-first MiniDisc label studio","license":"MIT","scripts":{"test":"node tests/unit.mjs","test:browser":"node tests/browser.mjs","build":"node build.mjs","serve":"python3 -m http.server 8080 --bind 127.0.0.1","test:fixes":"node tests/fixes.mjs","test:four-set":"node tests/four-set.mjs","test:logo":"node tests/logo.mjs"}}
+{
+  "name": "md-label-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline Chinese-first MiniDisc label studio",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests/unit.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "build": "node build.mjs",
+    "serve": "python3 -m http.server 8080 --bind 127.0.0.1",
+    "test:fixes": "node tests/fixes.mjs",
+    "test:four-set": "node tests/four-set.mjs",
+    "test:logo": "node tests/logo.mjs",
+    "test:spine": "node tests/spine.mjs"
+  }
+}

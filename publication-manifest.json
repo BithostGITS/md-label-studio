@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 10876,
-      "sha256": "639f86209901a6466b306866a133e136695e76b9d7156592aea7e5f8419d8913"
+      "bytes": 11687,
+      "sha256": "f8950a4c83eae6ee9f08bca65a8ed963aacf39568690573151506f69f2ffa73b"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
@@ -118,8 +118,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 425,
-      "sha256": "037f0c5fe0bf119f82a65a10cfad498a7118318e593cf7e4a71a3f392a3fb807"
+      "bytes": 541,
+      "sha256": "a5b7db9f71b426780919e984979facaafb42e6e2b98c561a29e745f003ce0325"
     },
     {
       "path": "png.mjs",
@@ -128,8 +128,8 @@
     },
     {
       "path": "render.mjs",
-      "bytes": 11681,
-      "sha256": "51414f02fb12cfac6e4a7c60f208762c6bb8ddfe578766b7caa1c39738d4aae2"
+      "bytes": 12084,
+      "sha256": "2b65b0588dc6a7d031b773c1d40c634da8450d3931da97cab4e6856c7ca341e0"
     },
     {
       "path": "style.css",
@@ -160,6 +160,11 @@
       "path": "tests/logo.mjs",
       "bytes": 8083,
       "sha256": "3aab4c05bad173d9338001edaf82f85badd208a75726f0f3e88d106ab7f3c8a3"
+    },
+    {
+      "path": "tests/spine.mjs",
+      "bytes": 5901,
+      "sha256": "76625c85f5592be3bd0fb373e725d263b6689c4296953c1762b5e96812f1e61c"
     },
     {
       "path": "tests/unit.mjs",
