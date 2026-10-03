@@ -39,3 +39,42 @@ endorsement, affiliation, or a grant of rights to downstream users.
 Users are responsible for assessing rights for their intended use.
 The Commons page's CC-BY-SA-4.0 categorization is recorded as source
 metadata, not asserted here as a verified grant from the rights holder.
+
+Additional offline font faces — SIL Open Font License 1.1
+
+Original source families: Source Sans 3, Noto Sans SC (regular 400), Noto Sans TC,
+and Noto Sans JP. Each verified upstream SIL OFL 1.1 license and copyright notice
+is retained in its corresponding assets/fonts/*-OFL.txt file.
+Source repository: https://github.com/google/fonts
+Pinned source commit: 9710da1eacb3be272583c3224dcb70f9da6eadbb
+
+Source Sans 3
+  Font: assets/fonts/source-sans.woff2
+  License: assets/fonts/source-sans-OFL.txt
+  Source: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf
+  Upstream license: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/sourcesans3/OFL.txt
+
+Noto Sans SC Regular
+  Font: assets/fonts/noto-sc-regular.woff2
+  License: assets/fonts/noto-sc-regular-OFL.txt
+  Source: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf
+  Upstream license: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosanssc/OFL.txt
+
+Noto Sans TC
+  Font: assets/fonts/noto-tc.woff2
+  License: assets/fonts/noto-tc-OFL.txt
+  Source: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosanstc/NotoSansTC%5Bwght%5D.ttf
+  Upstream license: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosanstc/OFL.txt
+
+Noto Sans JP
+  Font: assets/fonts/noto-jp.woff2
+  License: assets/fonts/noto-jp-OFL.txt
+  Source: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf
+  Upstream license: https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/notosansjp/OFL.txt
+
+These derivatives are static 400-weight WOFF2 conversions with no glyph
+subsetting, internally renamed MD Studio to avoid reusing reserved family names.
+The original copyright notices are preserved. Redistribution is under the
+individual SIL OFL 1.1 license, not this application’s MIT license. No endorsement
+or separate, unverified permission from the font authors is claimed. Existing
+MiniDisc/Hi-MD artwork and trademark restrictions above remain unchanged.

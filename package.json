@@ -15,6 +15,7 @@
     "test:logo": "node tests/logo.mjs",
     "test:spine": "node tests/spine.mjs",
     "test:himd": "node tests/himd.mjs",
-    "test:i18n": "node tests/i18n.mjs"
+    "test:i18n": "node tests/i18n.mjs",
+    "test:fonts": "node tests/fonts.mjs"
   }
 }

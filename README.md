@@ -13,11 +13,27 @@ selection. If browser storage is unavailable, language switching still works for
 the current visit; a new visit defaults to English.
 
 Only the interface changes: your album/artist text, sample content, selected label
-fonts, canvas artwork, geometry, and printed exports stay unchanged. The printed
+fonts, canvas artwork, geometry, and printed exports stay unchanged.
+
+The selectors offer one additional language-appropriate offline face per language:
+Source Sans 3 for English/Español/Français; Noto Sans SC Regular 400 for 简体中文
+(alongside the existing 600-weight face); Noto Sans TC for 繁體中文; Noto Sans JP
+for 日本語. All are freely redistributable under SIL OFL 1.1, with source URLs and
+full license files in [the font documentation](./assets/fonts/README.md).
+All nine faces total 23.43 MiB (9.07 MiB added), within the existing 25 MiB font
+budget. Original font files and old projects’ font choices are unchanged.
+Font choices are saved per set in the existing backward-compatible project schema;
+a selected font outside the current language’s suggestions remains selected and
+is marked as retained. Switching language never automatically selects a different
+font. Selecting a font deliberately changes label rendering; export bytes remain
+identical across UI languages **when font choices and other settings are unchanged**.
+
+ The printed
 insertion/calibration captions retain their existing wording. Download filenames
 are localized; the exported PNG bytes are identical for identical project settings.
 The single `i18n.mjs` module contains all six dictionaries; there are no translation
-services, additional assets, or external requests. Already-loaded pages also support
+services or runtime external requests. The additional fonts and licenses are bundled
+as local static assets. Already-loaded pages also support
 language switching without internet access. No service worker or offline first-load
 claim is made.
 
@@ -27,7 +43,8 @@ claim is made.
 - **Français :** Bienvenue ! Choisissez la langue en haut à droite ; le contenu des étiquettes et les images imprimées restent inchangés.
 - **日本語：** ようこそ！右上で言語を選べます。ラベルの内容や印刷画像は変わりません。
 
-Regression tests: `npm run test:i18n` verifies all UI dictionaries, rendered strings,
+Regression tests: `npm run test:fonts` checks per-language options, glyph coverage,
+real downloads and project round-tripping. `npm run test:i18n` verifies all UI dictionaries, rendered strings,
 localStorage/reload/default behavior, localized errors, and SHA-256 equality of
 real PNG downloads across all languages. `npm run test:spine` and
 `npm run test:himd` remain available alongside the existing suites.
@@ -61,7 +78,7 @@ python3 -m http.server 8080 --bind 127.0.0.1
 - 本地项目 JSON v2 保存/载入（含四套上传图片），兼容旧 v1 双套项目：保留 A/B 和原两套布局，
   新增独立 C/D 示例，可手动切换四套。几何 manifest 下载、安全文件名、载入失败提示。
   不会自动把项目写入浏览器持久存储；关闭/刷新前请保存。
-- 字体：Atkinson、B612、Noto Sans SC、Noto Serif SC、LXGW WenKai TC；全部离线，授权见字体目录。
+- 字体：保留原五款，新增 Source Sans 3、Noto Sans SC 常规 400、Noto Sans TC、Noto Sans JP；九款均离线，完整授权和来源见字体目录。
 
 ## 两类导出不能混淆
 
@@ -111,7 +128,7 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
 - `npm run test:browser`：Playwright Core + 本地Chrome。只访问隔离的127.0.0.1服务，含子路径、实际下载、
   pHYs/CRC、字体矩阵、图片/项目处理、断网导出、损坏字体、手机宽度截图。无需/不会访问参考站。
   按环境设置 `PLAYWRIGHT_MODULE=/path/to/playwright-core`、`CHROME_PATH=/path/to/chrome`；
-  不自动下载或安装浏览器。输出在 `tests/artifacts/`。测试结果见 `TEST-RESULTS.md`。
+  不自动下载或安装浏览器。输出在 `tests/artifacts/`。运行各测试命令查看当前测试结果。
 - `npm run build` 后仅部署 `dist/` 内容。GitHub Pages 可放在仓库根或发布目录，所有URL均相对路径；
   也可放任意静态服务器子路径。公开版本由 GitHub Pages 仓库根目录发布。
 - 浏览器支持要求：ES模块、Canvas2D、FontFace、structuredClone。已实测Chrome；Safari/Firefox尚未验证。
@@ -123,7 +140,7 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
 原代码无可验证许可，故全部独立编写。未复用专辑图或 Adobe kit。原 MiniDisc 标志作为单独本地资源复用，非 MIT/OFL；未声称已获权利人许可。
 原站Futura替换为OFL Atkinson；插入头使用普通三角及原 44×43 黑白 MiniDisc 图；不随主题染色。标志右缘为宽度减2mm（38mm正面时36mm），y=(5−43/11.811)/2≈0.6794mm，尺寸44/11.811×43/11.811mm；隐藏头部时不加载或绘制。
 原始四张程序艺术随应用MIT许可；用户上传图片由用户自己确认权利。
-字体转换重命名及许可证、源hash、版本在 `assets/fonts/`；共14.36MiB，无字形裁剪。
+字体转换重命名及许可证、源hash、版本在 `assets/fonts/`；原五款 14.36MiB，含新增字体共 23.43MiB，无字形裁剪。
 无原站同输入视觉diff；字体、抗锯齿、原版的非法bold font-variant语义与边框等差异不可能声称逐像素一致。
 并未复制原站的图片载入竞态，文本文字处理是独立实现，长词换行细节需原站实测后复核。
 

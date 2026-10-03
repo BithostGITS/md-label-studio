@@ -4,7 +4,7 @@ import {createRequire} from 'node:module';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 const root=path.resolve(import.meta.dirname,'..'),out=path.resolve(root,'../artifacts/logo-site-fix');await mkdir(out,{recursive:true});
-const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'/Users/xzhou/.npm-global/lib/node_modules/openclaw/node_modules/playwright-core');
+const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright-core');
 const server=createServer(async(req,res)=>{try{let p=new URL(req.url,'http://localhost').pathname.replace(/^\/studio\//,'/');if(p.endsWith('/'))p+='index.html';const f=path.resolve(root,'.'+p);if(!f.startsWith(root+'/'))throw Error();res.setHeader('Content-Type',({'.mjs':'text/javascript','.html':'text/html','.png':'image/png','.json':'application/json','.css':'text/css','.woff2':'font/woff2'})[path.extname(f)]||'text/plain');res.end(await readFile(f));}catch{res.writeHead(404);res.end();}});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
 const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});const context=await browser.newContext({acceptDownloads:true,viewport:{width:1280,height:1000}});await context.route('**/*',r=>r.request().url().startsWith(base)||r.request().url().startsWith('blob:'+base)?r.continue():r.abort());const page=await context.newPage();let assertions=0;const check=(v,m)=>{assert.ok(v,m);assertions++;};const results=[];
 async function settle(){await page.waitForTimeout(180);await page.waitForFunction(()=>!document.querySelector('#export-front').disabled);}

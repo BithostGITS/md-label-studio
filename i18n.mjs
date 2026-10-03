@@ -111,7 +111,7 @@ export const messages = {
     "about": "Independently made. Clearly documented.",
     "aboutText": "Controls and geometry are independently implemented from public reference reports. No original app code, album covers or Adobe font kit were copied. The original black-and-white MiniDisc logo does not change with the theme; its trademark and artwork rights are reserved, outside MIT/OFL. OFL Atkinson Hyperlegible replaces Futura, so glyphs differ from the original.",
     "rights": "Fonts, rights and known limitations",
-    "fontsText": "All five fonts are bundled locally under SIL OFL 1.1. Both Noto fonts use weight 600; WenKai TC covers Simplified and Traditional Chinese. Converted internal names use MD Studio. Each export checks font loading and glyph coverage; unsupported characters block export instead of silently using system fonts. Long text wraps and clips within the original area, without automatic shrinking.",
+    "fontsText": "All nine fonts are bundled locally under SIL OFL 1.1. The original Noto SC faces use weight 600; added Noto SC/TC/JP and Source Sans 3 faces use 400. WenKai TC covers Simplified and Traditional Chinese. Converted internal names use MD Studio. Each export checks font loading and glyph coverage; unsupported characters block export instead of silently using system fonts. Long text wraps and clips within the original area, without automatic shrinking.",
     "limitsText": "Physical printing and pixel comparison with the original site remain unverified. Manufacturer and community sizes are not universal; the Sony preset does not simulate a clipped corner. Calibration and dimensions describe software geometry only. Test-print first.",
     "readme": "Usage and implementation",
     "fontSources": "Font sources and licenses",
@@ -204,7 +204,15 @@ export const messages = {
     "fileGeometry": "geometry",
     "fileProject": "project",
     "fileCompat": "compatibility",
-    "filePhysical": "physical"
+    "filePhysical": "physical",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · Regular",
+    "notoSCRegular": "Noto Sans SC · Regular 400",
+    "notoTC": "Noto Sans TC · Regular",
+    "notoJP": "Noto Sans JP · Regular",
+    "fontRetained": "{name} · saved selection (for {languages})",
+    "fontLocaleNote": "Suggested fonts for {language}. Changing UI language preserves your saved font choices.",
+    "fontWeight": "{name} · weight {weight}"
   },
   "zh-Hans": {
     "title": "刻录之后 · MiniDisc 标签工作室",
@@ -317,7 +325,7 @@ export const messages = {
     "about": "独立制作，诚实标注。",
     "aboutText": "依据公开参考报告独立实现原站控件与几何；未复制原应用代码、专辑封面或 Adobe 字体套件。头部使用原 MiniDisc 黑白标志，不随主题染色；其商标与图稿权利保留，不属于 MIT/OFL 授权。Futura 以 OFL Atkinson Hyperlegible 替代，字形与原站并不完全一致。",
     "rights": "字体、版权与已知边界",
-    "fontsText": "五款字体均本地打包，保留 SIL OFL 1.1 授权。Noto 两款固定为 600 字重；文楷使用覆盖简繁中文的 TC 版本。转换后的内部字体名为 MD Studio 系列。每次导出检查实际字体载入和字符覆盖；无法显示的字符会阻止导出，而不是悄悄使用系统字体。长文字沿用原版换行与区域截断，不自动缩小。",
+    "fontsText": "九款字体均本地打包，保留 SIL OFL 1.1 授权。原有 Noto SC 两款为 600 字重；新增 Noto SC/TC/JP 与 Source Sans 3 为 400 字重。文楷 TC 覆盖简繁中文。转换后的内部字体名为 MD Studio 系列。每次导出检查实际字体载入和字符覆盖；无法显示的字符会阻止导出，而不是悄悄使用系统字体。长文字沿用原版换行与区域截断，不自动缩小。",
     "limitsText": "实际打印与原站像素对比仍待验证。厂商和社区尺寸并非所有盘壳通用；Sony 方案不模拟切角。校准和尺寸仅表达软件几何，必须先试印。",
     "readme": "使用与实现说明",
     "fontSources": "字体来源与授权",
@@ -410,7 +418,15 @@ export const messages = {
     "fileGeometry": "几何清单",
     "fileProject": "项目",
     "fileCompat": "兼容",
-    "filePhysical": "实寸"
+    "filePhysical": "实寸",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · 常规",
+    "notoSCRegular": "Noto Sans SC · 常规 400",
+    "notoTC": "Noto Sans TC · 常规",
+    "notoJP": "Noto Sans JP · 常规",
+    "fontRetained": "{name} · 保留已选字体（适用于{languages}）",
+    "fontLocaleNote": "为{language}提供推荐字体。切换界面语言会保留已选字体。",
+    "fontWeight": "{name} · 字重 {weight}"
   },
   "zh-Hant": {
     "title": "刻錄之後 · MiniDisc 標籤工作室",
@@ -523,7 +539,7 @@ export const messages = {
     "about": "獨立製作，誠實標示。",
     "aboutText": "依公開參考報告獨立實作原站控制項與幾何；未複製原應用程式碼、專輯封面或 Adobe 字型套件。原 MiniDisc 黑白標誌不隨主題變色；商標與圖稿權利保留，不屬於 MIT/OFL。Futura 以 OFL Atkinson Hyperlegible 替代，字形與原站不同。",
     "rights": "字型、版權與已知限制",
-    "fontsText": "五款字型均在本機封裝，保留 SIL OFL 1.1 授權。兩款 Noto 使用 600 字重；文楷 TC 涵蓋簡繁中文。轉換後的內部名稱為 MD Studio 系列。每次匯出檢查字型載入與字元涵蓋範圍；不支援的字元會阻止匯出，不會默默換用系統字型。長文字依原版換行及區域截斷，不自動縮小。",
+    "fontsText": "九款字型均在本機封裝，保留 SIL OFL 1.1 授權。原有兩款 Noto SC 使用 600 字重；新增 Noto SC/TC/JP 與 Source Sans 3 使用 400 字重。文楷 TC 涵蓋簡繁中文。轉換後的內部名稱為 MD Studio 系列。每次匯出檢查字型載入與字元涵蓋範圍；不支援的字元會阻止匯出，不會默默換用系統字型。長文字依原版換行及區域截斷，不自動縮小。",
     "limitsText": "實際列印及原站像素比對仍待驗證。廠商與社群尺寸並非適用所有盤殼；Sony 預設不模擬切角。校準與尺寸只表示軟體幾何，請先試印。",
     "readme": "使用與實作說明",
     "fontSources": "字型來源與授權",
@@ -616,7 +632,15 @@ export const messages = {
     "fileGeometry": "幾何清單",
     "fileProject": "專案",
     "fileCompat": "相容",
-    "filePhysical": "實寸"
+    "filePhysical": "實寸",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · 常規",
+    "notoSCRegular": "Noto Sans SC · 常規 400",
+    "notoTC": "Noto Sans TC · 常規",
+    "notoJP": "Noto Sans JP · 常規",
+    "fontRetained": "{name} · 保留已選字型（適用於{languages}）",
+    "fontLocaleNote": "為{language}提供建議字型。切換介面語言會保留已選字型。",
+    "fontWeight": "{name} · 字重 {weight}"
   },
   "es": {
     "title": "Después de grabar · MiniDisc Label Studio",
@@ -729,7 +753,7 @@ export const messages = {
     "about": "Creación independiente. Información transparente.",
     "aboutText": "Los controles y la geometría se implementaron de forma independiente a partir de informes públicos. No se copiaron código, portadas ni fuentes Adobe. El logotipo original MiniDisc en blanco y negro no cambia con el tema; sus derechos de marca e imagen quedan reservados, fuera de MIT/OFL. Atkinson Hyperlegible (OFL) sustituye a Futura, con glifos distintos.",
     "rights": "Fuentes, derechos y limitaciones",
-    "fontsText": "Las cinco fuentes se incluyen localmente bajo SIL OFL 1.1. Noto usa peso 600; WenKai TC cubre chino simplificado y tradicional. Los nombres internos convertidos son MD Studio. Cada exportación comprueba carga y glifos; los caracteres no compatibles bloquean la exportación, sin sustituirlos por fuentes del sistema. El texto largo se ajusta y recorta en el área original, sin reducirse automáticamente.",
+    "fontsText": "Las nueve fuentes se incluyen localmente bajo SIL OFL 1.1. Las Noto SC originales usan peso 600; las nuevas Noto SC/TC/JP y Source Sans 3 usan 400. WenKai TC cubre chino simplificado y tradicional. Los nombres internos convertidos son MD Studio. Cada exportación comprueba carga y glifos; los caracteres no compatibles bloquean la exportación, sin sustituirlos por fuentes del sistema. El texto largo se ajusta y recorta en el área original, sin reducirse automáticamente.",
     "limitsText": "La impresión física y la comparación de píxeles con el sitio original siguen sin verificarse. Las medidas del fabricante y de la comunidad no son universales; el ajuste Sony no simula la esquina recortada. La calibración solo describe la geometría del software. Haz una prueba primero.",
     "readme": "Uso e implementación",
     "fontSources": "Origen y licencias de fuentes",
@@ -822,7 +846,15 @@ export const messages = {
     "fileGeometry": "geometría",
     "fileProject": "proyecto",
     "fileCompat": "compatible",
-    "filePhysical": "físico"
+    "filePhysical": "físico",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · regular",
+    "notoSCRegular": "Noto Sans SC · regular 400",
+    "notoTC": "Noto Sans TC · regular",
+    "notoJP": "Noto Sans JP · regular",
+    "fontRetained": "{name} · selección guardada (para {languages})",
+    "fontLocaleNote": "Fuentes sugeridas para {language}. Cambiar el idioma conserva tus fuentes guardadas.",
+    "fontWeight": "{name} · peso {weight}"
   },
   "fr": {
     "title": "Après la gravure · MiniDisc Label Studio",
@@ -935,7 +967,7 @@ export const messages = {
     "about": "Création indépendante. Informations transparentes.",
     "aboutText": "Les commandes et la géométrie sont réalisées indépendamment à partir de rapports publics. Aucun code d’origine, pochette ou kit Adobe n’a été copié. Le logo MiniDisc noir et blanc ne change pas selon le thème ; ses droits de marque et d’image sont réservés, hors MIT/OFL. Atkinson Hyperlegible (OFL) remplace Futura, avec des glyphes différents.",
     "rights": "Polices, droits et limites connues",
-    "fontsText": "Les cinq polices sont intégrées localement sous SIL OFL 1.1. Noto utilise la graisse 600 ; WenKai TC couvre les chinois simplifié et traditionnel. Les noms internes convertis sont MD Studio. Chaque export vérifie le chargement et les glyphes ; un caractère non pris en charge bloque l’export, sans police système de substitution. Les textes longs sont renvoyés à la ligne et tronqués dans la zone d’origine, sans réduction automatique.",
+    "fontsText": "Les neuf polices sont intégrées localement sous SIL OFL 1.1. Les Noto SC d’origine utilisent la graisse 600 ; les nouvelles Noto SC/TC/JP et Source Sans 3 utilisent 400. WenKai TC couvre les chinois simplifié et traditionnel. Les noms internes convertis sont MD Studio. Chaque export vérifie le chargement et les glyphes ; un caractère non pris en charge bloque l’export, sans police système de substitution. Les textes longs sont renvoyés à la ligne et tronqués dans la zone d’origine, sans réduction automatique.",
     "limitsText": "L’impression physique et la comparaison des pixels avec le site d’origine restent à vérifier. Les formats fabricant et communautaires ne sont pas universels ; le format Sony ne simule pas l’angle coupé. L’étalonnage décrit uniquement la géométrie logicielle. Faites d’abord un essai.",
     "readme": "Utilisation et réalisation",
     "fontSources": "Sources et licences des polices",
@@ -1028,7 +1060,15 @@ export const messages = {
     "fileGeometry": "géométrie",
     "fileProject": "projet",
     "fileCompat": "compatible",
-    "filePhysical": "physique"
+    "filePhysical": "physique",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · normal",
+    "notoSCRegular": "Noto Sans SC · normal 400",
+    "notoTC": "Noto Sans TC · normal",
+    "notoJP": "Noto Sans JP · normal",
+    "fontRetained": "{name} · choix conservé (pour {languages})",
+    "fontLocaleNote": "Polices proposées pour {language}. Changer de langue conserve vos choix de polices.",
+    "fontWeight": "{name} · graisse {weight}"
   },
   "ja": {
     "title": "録音のあとに · MiniDisc ラベルスタジオ",
@@ -1141,7 +1181,7 @@ export const messages = {
     "about": "独自に制作し、違いを明記。",
     "aboutText": "公開の参照レポートに基づき、操作画面と寸法を独自に実装しました。元アプリのコード、アルバム表紙、Adobeフォントキットはコピーしていません。元の白黒MiniDiscロゴはテーマで色を変えず、商標・画像の権利はMIT/OFLの対象外です。Futuraの代わりにOFLのAtkinson Hyperlegibleを使うため、字形は異なります。",
     "rights": "フォント、権利、既知の制限",
-    "fontsText": "5種類のフォントをSIL OFL 1.1付きでローカルに同梱しています。Notoの2種類はウェイト600、WenKaiは簡体字・繁体字を含むTC版です。変換後の内部名はMD Studioです。書き出し時に読み込みと文字の対応を確認し、未対応の文字があればシステムフォントに置き換えず書き出しを止めます。長文は元の領域内で折り返し・切り詰めを行い、自動縮小しません。",
+    "fontsText": "9種類のフォントをSIL OFL 1.1付きでローカルに同梱しています。従来のNoto SCの2種類はウェイト600、追加のNoto SC/TC/JPとSource Sans 3は400です。WenKai TCは簡体字・繁体字に対応します。変換後の内部名はMD Studioです。書き出し時に読み込みと文字の対応を確認し、未対応の文字があればシステムフォントに置き換えず書き出しを止めます。長文は元の領域内で折り返し・切り詰めを行い、自動縮小しません。",
     "limitsText": "実際の印刷と元サイトとのピクセル比較は未検証です。メーカーやコミュニティの寸法はすべてのケースに共通ではなく、Sonyプリセットは角の切り欠きを再現しません。校正と寸法はソフトウェア上の幾何を示すだけです。先に試し刷りしてください。",
     "readme": "使い方と実装の説明",
     "fontSources": "フォントの出典とライセンス",
@@ -1234,7 +1274,15 @@ export const messages = {
     "fileGeometry": "寸法情報",
     "fileProject": "プロジェクト",
     "fileCompat": "互換",
-    "filePhysical": "実寸"
+    "filePhysical": "実寸",
+    "b612": "B612",
+    "sourceSans": "Source Sans 3 · レギュラー",
+    "notoSCRegular": "Noto Sans SC · レギュラー 400",
+    "notoTC": "Noto Sans TC · レギュラー",
+    "notoJP": "Noto Sans JP · レギュラー",
+    "fontRetained": "{name} · 選択を保持（{languages}向け）",
+    "fontLocaleNote": "{language}向けのおすすめフォントです。画面の言語を変えても、選択済みのフォントは保持します。",
+    "fontWeight": "{name} · ウェイト {weight}"
   }
 };
 
@@ -1267,9 +1315,14 @@ export function bindUI(doc = document) {
   textBindings = []; attributeBindings = [];
   const walker = doc.createTreeWalker(doc.documentElement, 4);
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    if (node.parentElement.closest('script,style,#language')) continue;
+    if (node.parentElement.closest('script,style,#language,[data-i18n]')) continue;
     const value = node.nodeValue, trimmed = value.trim(), key = sourceKeys.get(trimmed);
     if (key) textBindings.push({node, key, before: value.slice(0, value.indexOf(trimmed)), after: value.slice(value.indexOf(trimmed) + trimmed.length)});
+  }
+  for (const node of doc.querySelectorAll('[data-i18n]')) {
+    const key = node.dataset.i18n;
+    if (!Object.hasOwn(messages.en, key)) throw new Error('Missing explicit locale key: ' + key);
+    textBindings.push({node: node.firstChild, key, before: '', after: ''});
   }
   for (const node of doc.querySelectorAll('[aria-label],[title],[placeholder],meta[name="description"]')) {
     for (const attr of ['aria-label','title','placeholder','content']) {
@@ -1289,7 +1342,7 @@ export const uiBindings = () => ({texts: textBindings.filter(b=>b.node.isConnect
 export function setLanguage(value, {persist = true} = {}) {
   language = LANGUAGES.includes(value) ? value : 'en';
   if (typeof document !== 'undefined') applyUI();
-  if (persist && typeof localStorage !== 'undefined') {try {localStorage.setItem(STORAGE_KEY, language);} catch {/* Private/restricted storage: UI remains usable. */}}
+  if (persist) {try {globalThis.localStorage?.setItem(STORAGE_KEY, language);} catch {/* Getter and methods may deny storage: keep session language and notify listeners. */}}
   for (const listener of listeners) listener(language);
   return language;
 }
@@ -1299,4 +1352,27 @@ export function initI18n(doc = document) {
   let saved;try {saved = localStorage.getItem(STORAGE_KEY);} catch {/* Default English without storage. */}
   setLanguage(saved, {persist: false});
   doc.getElementById('language')?.addEventListener('change', event => setLanguage(event.target.value));
+}
+
+// Font eligibility controls suggestions, never a set's saved font or canvas text.
+export const LANGUAGE_NAMES = Object.freeze({en:'English','zh-Hans':'简体中文','zh-Hant':'繁體中文',es:'Español',fr:'Français',ja:'日本語'});
+export const FONT_OPTIONS = Object.freeze({
+  atkinson:{role:'latin',label:'atkinson',languages:LANGUAGES},
+  b612:{role:'latin',label:'b612',languages:LANGUAGES},
+  'noto-sans':{role:'cjk',label:'notoSans',weight:600,languages:LANGUAGES},
+  'noto-serif':{role:'cjk',label:'notoSerif',weight:600,languages:LANGUAGES},
+  wenkai:{role:'cjk',label:'wenkai',languages:LANGUAGES},
+  'source-sans':{role:'latin',label:'sourceSans',languages:['en','es','fr']},
+  'noto-sc-regular':{role:'cjk',label:'notoSCRegular',languages:['zh-Hans']},
+  'noto-tc':{role:'cjk',label:'notoTC',languages:['zh-Hant']},
+  'noto-jp':{role:'cjk',label:'notoJP',languages:['ja']}
+});
+export function fontChoices(role, selected, lang = getLanguage()) {
+  const choices = Object.entries(FONT_OPTIONS).filter(([,info])=>info.role===role&&info.languages.includes(lang)).map(([key,info])=>({key,info,retained:false}));
+  if (!choices.some(c=>c.key===selected) && FONT_OPTIONS[selected]?.role===role) choices.push({key:selected,info:FONT_OPTIONS[selected],retained:true});
+  return choices;
+}
+export function fontName(key) {
+  const info=FONT_OPTIONS[key],name=t(info.label);
+  return info.weight?t('fontWeight',{name,weight:info.weight}):name;
 }

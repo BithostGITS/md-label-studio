@@ -5,7 +5,7 @@ import {createHash} from 'node:crypto';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 const root=path.resolve(import.meta.dirname,'..'),out=path.resolve(root,'../artifacts/four-set');await mkdir(out,{recursive:true});
-const {chromium}=createRequire(import.meta.url)('/Users/xzhou/.npm-global/lib/node_modules/openclaw/node_modules/playwright-core');
+const {chromium}=createRequire(import.meta.url)(process.env.PLAYWRIGHT_MODULE||'playwright-core');
 const server=createServer(async(req,res)=>{try{let p=new URL(req.url,'http://localhost').pathname;if(p.endsWith('/'))p+='index.html';const f=path.resolve(root,'.'+p);if(!f.startsWith(root+'/'))throw Error();res.setHeader('Content-Type',({'.mjs':'text/javascript','.html':'text/html','.woff2':'font/woff2','.css':'text/css','.png':'image/png'})[path.extname(f)]||'text/plain');res.end(await readFile(f));}catch{res.writeHead(404);res.end();}});await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const base=`http://127.0.0.1:${server.address().port}`,browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'}),context=await browser.newContext({acceptDownloads:true}),page=await context.newPage();
 const checks=[],errors=[],downloads=[];page.on('pageerror',e=>errors.push(e.message));const check=(v,name)=>{assert.ok(v,name);checks.push({name,pass:true});};
