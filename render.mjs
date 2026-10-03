@@ -39,21 +39,23 @@ export function loadLogo(){
  }).catch(error=>{logoPending=null;throw error;});
  return logoPending;
 }
+let frontHiMDFrame;
+function hiMDFrame(){if(frontHiMDFrame)return frontHiMDFrame;const c=newCanvas(106,43),x=c.getContext('2d');x.fillStyle='white';x.fillRect(5,5,96,33);for(const [sx,sy,sw,sh,dx,dy,dw,dh] of [[0,0,5,5,0,0,5,5],[39,0,5,5,101,0,5,5],[0,38,5,5,0,38,5,5],[39,38,5,5,101,38,5,5],[5,0,34,5,5,0,96,5],[5,38,34,5,5,38,96,5],[0,5,5,33,0,5,5,33],[39,5,5,33,101,5,5,33]])x.drawImage(logoImage,sx,sy,sw,sh,dx,dy,dw,dh);frontHiMDFrame=c;return c;}
 const hiMDImages=new Map(),hiMDPending=new Map();
-export function loadHiMD(framed=false){
- const name=framed?'hi-md-framed.png':'hi-md.png',size=framed?[44,43]:[272,88];
+export function loadHiMD(){
+ const name='hi-md.png',size=[272,88];
  if(hiMDImages.has(name))return Promise.resolve(hiMDImages.get(name));
  if(hiMDPending.has(name))return hiMDPending.get(name);
  const pending=new Promise((resolve,reject)=>{const image=new Image();let done=false;const finish=error=>{if(done)return;done=true;clearTimeout(timeout);image.onload=image.onerror=null;if(error)return reject(error);hiMDImages.set(name,image);resolve(image);};const timeout=setTimeout(()=>finish(Error('Hi-MD 标志载入超时：'+name)),15000);image.onload=()=>finish(image.naturalWidth===size[0]&&image.naturalHeight===size[1]?null:Error('Hi-MD 标志尺寸无效：'+name));image.onerror=()=>finish(Error('Hi-MD 标志载入失败：'+name));image.src=new URL('./assets/branding/'+name,import.meta.url).href;}).catch(error=>{hiMDPending.delete(name);throw error;});hiMDPending.set(name,pending);return pending;
 }
-export async function prepare(set){checkFonts(set);const [art]=await Promise.all([getArtwork(set.art),set.hideHeader?null:loadLogo(),set.hiMD&&!set.hideHeader?loadHiMD(true):null]);return art;}
+export async function prepare(set){checkFonts(set);const [art]=await Promise.all([getArtwork(set.art),set.hideHeader?null:loadLogo(),set.hiMD&&!set.hideHeader?loadHiMD():null]);return art;}
 /** Word wrapping with character fallback, blank lines retained; no shrink-to-fit. */
 export function wrappedLines(ctx,text,width){const lines=[];for(const paragraph of text.replace(/\r\n?/g,'\n').split('\n')){let line='';const tokens=paragraph.match(/\s+|[^\s]+/gu)||[''];for(const token of tokens){if(ctx.measureText(line+token).width<=width){line+=token;continue;}if(line){lines.push(line.trimEnd());line='';}for(const c of token){if(line&&ctx.measureText(line+c).width>width){lines.push(line);line='';}line+=c;}}lines.push(line.trimEnd());}return lines;}
 export function cutline(ctx,w,h,dark=false){ctx.save();ctx.strokeStyle=dark?'#a7aba4':'#6d786c';ctx.lineWidth=STROKE;ctx.strokeRect(STROKE/2,STROKE/2,w-STROKE,h-STROKE);ctx.restore();}
 export function paintFront(ctx,set,art,bounds){
  const d=frontDimensions(set),w=d.w,h=d.h,dark=set.theme==='dark',bg=dark?'#231F20':'#ffffff',fg=dark?'#ffffff':'#000000';
  ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);ctx.fillStyle=fg;const head=set.hideHeader?0:5,artSize=Math.min(w,h-head-8),artX=(w-artSize)/2;ctx.font=`1.76px ${fontStack(set)}`;ctx.textBaseline='middle';
- if(head){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.fillText('INSERT THIS END',5.5,2.9138,Math.max(4,w-13));if(!logoImage)throw Error('MiniDisc 标志尚未就绪');const lw=44/11.811,lh=43/11.811;ctx.drawImage(logoImage,w-2-lw,(5-lh)/2,lw,lh);if(set.hiMD){const mark=hiMDImages.get('hi-md-framed.png');if(!mark)throw Error('Hi-MD 标志尚未就绪');ctx.drawImage(mark,w-2-2*lw-.5,(5-lh)/2,lw,lh);}}
+ if(head){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.fillText('INSERT THIS END',5.5,2.9138,set.hiMD?Math.max(1,w-2-44/11.811-.5-106/11.811-1-5.5):Math.max(4,w-13));if(!logoImage)throw Error('MiniDisc 标志尚未就绪');const lw=44/11.811,lh=43/11.811;ctx.drawImage(logoImage,w-2-lw,(5-lh)/2,lw,lh);if(set.hiMD){const mark=hiMDImages.get('hi-md.png');if(!mark)throw Error('Hi-MD 标志尚未就绪');const fw=106/11.811,fh=43/11.811,fx=w-2-lw-.5-fw,fy=(5-fh)/2,stroke=2/11.811,pad=5/11.811;if(fx<2||fy<0||fx+fw>w-2||fy+fh>5)throw Error('Hi-MD 标志超出正面标签边距');ctx.drawImage(hiMDFrame(),fx,fy,fw,fh);ctx.drawImage(mark,fx+(106-31*272/88)/2/11.811,fy+pad,(31*272/88)/11.811,31/11.811);}}
  if(art){const ratio=Math.min(artSize/art.width,artSize/art.height),iw=art.width*ratio,ih=art.height*ratio;ctx.drawImage(art,artX+(artSize-iw)/2,head+(artSize-ih)/2,iw,ih);}
  const boxY=head+artSize,boxH=h-boxY;ctx.font=`1.76px ${fontStack(set)}`;const lines=wrappedLines(ctx,displayText(set,[set.album,set.artist,set.year].join('\n')),w-4),capacity=Math.floor(boxH/2.12),visible=lines.slice(0,capacity);ctx.save();ctx.beginPath();ctx.rect(2,boxY,w-4,boxH-.15);ctx.clip();const y=boxY+(boxH-visible.length*2.12)/2;visible.forEach((line,i)=>ctx.fillText(line,2,y+(i+.5)*2.12));ctx.restore();ctx.restore();cutline(ctx,bounds?.w??w,bounds?.h??h,dark);return {truncated:lines.length>capacity,lineCount:lines.length,capacity};
 }

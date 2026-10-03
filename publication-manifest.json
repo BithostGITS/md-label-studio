@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: application code/tests, offline fonts/OFL, MiniDisc and Hi-MD branding plus reserved-rights notices only; no covers, sample outputs, source research or caches. Framed Hi-MD is an application composite, not an official square variant.",
+  "description": "Explicit public allowlist: app/tests, offline fonts/OFL, original horizontal Hi-MD and MiniDisc branding, rights notices. Front rectangular frame derived at runtime from unchanged MiniDisc edge bands; no square Hi-MD composite, covers, local outputs, research or caches.",
   "files": [
     {
       "path": ".gitignore",
@@ -23,18 +23,13 @@
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
-      "bytes": 2507,
-      "sha256": "29b3dd30184b1ecb24499833f6bd10146b34a43a9cf8df94900d3c50f6453e0f"
+      "bytes": 2361,
+      "sha256": "f12103623ece6b01ffd5c6bda46b14212962b5cd5d1f536f2babc09272407930"
     },
     {
       "path": "app.mjs",
       "bytes": 15267,
       "sha256": "697dae6257a20b576beb6dcf481766ec8f0030396936d3de7933cdd44964d7f5"
-    },
-    {
-      "path": "assets/branding/hi-md-framed.png",
-      "bytes": 944,
-      "sha256": "0ef53d2d1192a74041c98f4fb04a1345a499130eebaf91ab14b962b2a5bf0b7c"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -108,8 +103,8 @@
     },
     {
       "path": "build.mjs",
-      "bytes": 2797,
-      "sha256": "cad7ea9d20e4dff99feb71396a32716b98ffc421871e801c56846eb251d070c4"
+      "bytes": 2762,
+      "sha256": "b4fcb24e51c21eeec2213bc28986714565ec864c0a15b6342bc6e1a18a73b8ca"
     },
     {
       "path": "geometry.mjs",
@@ -138,8 +133,8 @@
     },
     {
       "path": "render.mjs",
-      "bytes": 13865,
-      "sha256": "0a6cafb0632df216b09dfc4b1bf319d5f61c5c1ba0948627096304d99e0ac1a1"
+      "bytes": 14561,
+      "sha256": "4c0378b78a2725c3a822530c980cf16e3c3f0d6290139d0cb9a85b54357adad2"
     },
     {
       "path": "style.css",
@@ -158,8 +153,8 @@
     },
     {
       "path": "tests/fixes.mjs",
-      "bytes": 2509,
-      "sha256": "3cf2e737f164aceccc10347b73b2f1169178acab47af97ac4b104047c9e698d7"
+      "bytes": 2474,
+      "sha256": "bcf2522c294e6a5a6bd9f3aba33b99db5938cbd461b3652151897ac33ad579ec"
     },
     {
       "path": "tests/four-set.mjs",
@@ -168,8 +163,8 @@
     },
     {
       "path": "tests/himd.mjs",
-      "bytes": 16679,
-      "sha256": "9f98c8384f771e16be5c013f182bf3f1f7ccaae03a86ec0014cc60234445b2f3"
+      "bytes": 18667,
+      "sha256": "af382f7d885ca2062e4acfa519c138c28e44cc373f4f4d696fecbaeedd5e7cc8"
     },
     {
       "path": "tests/logo.mjs",
@@ -183,8 +178,8 @@
     },
     {
       "path": "tests/unit.mjs",
-      "bytes": 5589,
-      "sha256": "7ca6349650cb7ce067ae5a2748b21919e9bb9b56c74f35f3bb92016a86270970"
+      "bytes": 5439,
+      "sha256": "b053a469e980b6ab92e7621b37799eb55a73e24789f9931b1bdd36e9c80feeb9"
     }
   ]
 }

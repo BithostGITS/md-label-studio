@@ -23,9 +23,8 @@ console.log(`${checks} total assertions including four-set anchors/collision rej
 
 // Hi-MD is metadata only: nominal rectangles must remain identical in either mode.
 for(const count of [2,4])eq(sheetManifest(Array.from({length:count},(_,i)=>({...s,hiMD:i%2===0})),cfg),sheetManifest(Array(count).fill(s),cfg));
-const hiMark=readFileSync(new URL('../assets/branding/hi-md.png',import.meta.url)),hiFrame=readFileSync(new URL('../assets/branding/hi-md-framed.png',import.meta.url));
+const hiMark=readFileSync(new URL('../assets/branding/hi-md.png',import.meta.url));
 eq([hiMark.readUInt32BE(16),hiMark.readUInt32BE(20)],[272,88]);
-eq([hiFrame.readUInt32BE(16),hiFrame.readUInt32BE(20)],[44,43]);
 eq(createHash('sha256').update(hiMark).digest('hex'),'0bba37b7df5b973ce62d805a1139bf359ecd50d46a484bd9574e0ddd6a1a8220');
 ok(readFileSync(new URL('../THIRD-PARTY-NOTICES.txt',import.meta.url),'utf8').includes('Third-party Hi-MD logo — rights reserved'));
 console.log(`${checks} total assertions including Hi-MD assets/geometry passed.`);
