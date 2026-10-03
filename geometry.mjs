@@ -11,11 +11,15 @@ export function calibration(settings){if(!settings.calibrated)return {mode:'none
 export function pixelRect(r){const x=px(r.x),y=px(r.y);return {x,y,width:px(r.x+r.width)-x,height:px(r.y+r.height)-y};}
 export function overlaps(a,b){return a.x<b.x+b.width-1e-8&&b.x<a.x+a.width-1e-8&&a.y<b.y+b.height-1e-8&&b.y<a.y+a.height-1e-8;}
 export function sheetManifest(sets,settings){
- if(sets.length!==2)throw Error('纸张必须包含两套标签');
+ if(![2,4].includes(sets.length))throw Error('纸张必须包含两套或四套标签');
  const paper=PAPERS[settings.paper];if(!paper)throw Error('未知纸张');const {width:W,height:H}=paper;
  const dims=sets.map(dimensions), gap=6, margin=6, cal=calibration(settings),fx=cal.x.factor,fy=cal.y.factor;
  const [a,b]=dims;let design;
- if(a.w+b.w+gap<=W-2*margin){
+ if(sets.length===4){
+  // Fixed nominal anchors: custom dimensions must fit, never shrink/reflow silently.
+  const ox=(W-100)/2,oy=(H-148)/2;
+  design=dims.map((d,i)=>[{x:ox+(i%2?53:9),y:oy+(i<2?6:62),width:d.w,height:d.h},{x:ox+21,y:oy+118+i*5.5,width:d.sw,height:d.sh}]);
+ }else if(a.w+b.w+gap<=W-2*margin){
   const totalH=Math.max(a.h,b.h)+gap+a.sh+gap+b.sh,top=(H-totalH)/2,left=(W-a.w-b.w-gap)/2;
   design=[[{x:left,y:top,width:a.w,height:a.h},{x:(W-a.sw)/2,y:top+Math.max(a.h,b.h)+gap,width:a.sw,height:a.sh}],
   [{x:left+a.w+gap,y:top,width:b.w,height:b.h},{x:(W-b.sw)/2,y:top+Math.max(a.h,b.h)+gap+a.sh+gap,width:b.sw,height:b.sh}]];
@@ -24,7 +28,7 @@ export function sheetManifest(sets,settings){
   design=dims.map(d=>{const front={x:(W-d.w)/2,y,width:d.w,height:d.h};y+=d.h+gap;const spine={x:(W-d.sw)/2,y,width:d.sw,height:d.sh};y+=d.sh+gap;return [front,spine];});
  }
  const manifest={schema:'md-studio/1',paperPreset:settings.paper,paperMm:{width:W,height:H},dpi:DPI,exportPx:{width:px(W),height:px(H)},marginsMm:{left:margin,right:margin,top:margin,bottom:margin},calibration:cal,transform:{origin:'paper-center',centerMm:{x:W/2,y:H/2},formula:'rendered = center + (design - center) * factor',checkerNote:'nominalMm positions are pretranslated by center/factor-center before origin scaling; dimensions stay nominal. designMm retains original centered layout.'},physicalOutputVerified:false,sets:[]};
- manifest.sets=design.map((pair,i)=>({id:i?'B':'A',profile:sets[i].profile,labels:pair.map((r,j)=>{
+ manifest.sets=design.map((pair,i)=>({id:'ABCD'[i],profile:sets[i].profile,labels:pair.map((r,j)=>{
   const rendered={x:W/2+(r.x-W/2)*fx,y:H/2+(r.y-H/2)*fy,width:r.width*fx,height:r.height*fy};
   return {kind:j?'spine':'front',designMm:r,nominalMm:{...r,x:rendered.x/fx,y:rendered.y/fy},renderedMm:rendered,rectPx:pixelRect(rendered),cutline:{placement:'inside',widthMm:STROKE,maxWidthMm:.2,widthPx:{x:STROKE*fx*PPM,y:STROKE*fy*PPM}}};})}));
  const labels=manifest.sets.flatMap(s=>s.labels);

@@ -13,3 +13,10 @@ const tiny=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4
 const fonts=JSON.parse(readFileSync(new URL('../assets/fonts/manifest.json',import.meta.url)));let total=0;for(const [k,f]of Object.entries(fonts)){const bytes=readFileSync(new URL('../assets/fonts/'+f.file,import.meta.url));eq(bytes.length,f.bytes);eq(createHash('sha256').update(bytes).digest('hex'),f.sha256);ok(f.bytes<25*1024*1024);ok(readFileSync(new URL('../assets/fonts/'+f.licenseFile,import.meta.url),'utf8').includes('SIL OPEN FONT LICENSE'));total+=f.bytes;}ok(total<25*1024*1024);
 try{const {validateManifest}=await import('../../tests/geometry-check.mjs');for(const m of [defaults,measured,sheetManifest([s,s],{...cfg,paper:'inch'})]){const result=validateManifest(m);assert.ok(result.ok,JSON.stringify(result.errors));checks++;}console.log('Independent sibling geometry validator: 3 production manifests PASS');}catch(e){if(e.code==='ERR_MODULE_NOT_FOUND')console.log('Sibling independent validator absent (portable distribution); local assertions used.');else throw e;}
 console.log(`${checks} unit assertions passed; fonts ${(total/1024/1024).toFixed(2)} MiB; DPI ${DPI}.`);
+
+const four=sheetManifest([s,s,s,s],cfg);eq(four.sets.map(s=>s.id),['A','B','C','D']);eq(four.exportPx,{width:1181,height:1748});
+for(let i=0;i<4;i++){eq(four.sets[i].labels[0].designMm,{x:i%2?53:9,y:i<2?6:62,width:38,height:54});eq(four.sets[i].labels[1].designMm,{x:21,y:118+i*5.5,width:58,height:3.5});}
+for(const bad of [{w:45,h:54},{w:38,h:57},{w:70,h:80}])fails(()=>sheetManifest([{...s,profile:'custom',...bad},s,s,s],cfg));
+fails(()=>sheetManifest([s,s,s,{...s,sh:10}],cfg));fails(()=>sheetManifest([s,s,s,{...s,sw:85}],cfg));fails(()=>sheetManifest([s,s,s],cfg));
+eq(sheetManifest([s,s,s,s],{...cfg,paper:'inch'}).exportPx,{width:1200,height:1800});
+console.log(`${checks} total assertions including four-set anchors/collision rejection passed.`);

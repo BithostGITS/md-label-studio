@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist; excludes this manifest itself. MiniDisc logo rights reserved separately. No reference app, album art, or private artifacts.",
+  "description": "Explicit public allowlist: code, offline fonts/OFL, original logo and rights notice only; no covers, sample outputs, research or caches.",
   "files": [
     {
       "path": ".gitignore",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 8420,
-      "sha256": "83888ee2e29cc686076233b4faeaec1c2c251f6cc71f82e5d4eee0efda679ffd"
+      "bytes": 10876,
+      "sha256": "639f86209901a6466b306866a133e136695e76b9d7156592aea7e5f8419d8913"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 13978,
-      "sha256": "6132e4e36cd7863614d7dd705ec2e505ec78f6b01f2940037986b9c6c8f2538c"
+      "bytes": 15234,
+      "sha256": "a69403d49c2da719e3133113d15555ff003d2b67d561fe80eaeaab6dd0b52a57"
     },
     {
       "path": "assets/branding/minidisc.png",
@@ -103,8 +103,8 @@
     },
     {
       "path": "geometry.mjs",
-      "bytes": 4859,
-      "sha256": "d0ad19591d933dba2dc4e07e0db4b342ae7b333b62a9b18212032499587c706b"
+      "bytes": 5162,
+      "sha256": "3b56b679dc13c10216312a8252116d61fa6885fd3541728af2b4517f8ff86071"
     },
     {
       "path": "image-input.mjs",
@@ -113,13 +113,13 @@
     },
     {
       "path": "index.html",
-      "bytes": 11057,
-      "sha256": "7c25ed0434ebb323b7de69c03b14c2da826caec75371ed89304828368a162e09"
+      "bytes": 11537,
+      "sha256": "e0503fd4682c40542903c4d5c391de3365f88dfd3c20bf4794382e27552d2f4e"
     },
     {
       "path": "package.json",
-      "bytes": 323,
-      "sha256": "d4934f178397423d535a25ed8d2a579e2747c80a21a57db289be4f076c8c3349"
+      "bytes": 425,
+      "sha256": "037f0c5fe0bf119f82a65a10cfad498a7118318e593cf7e4a71a3f392a3fb807"
     },
     {
       "path": "png.mjs",
@@ -128,18 +128,43 @@
     },
     {
       "path": "render.mjs",
-      "bytes": 11671,
-      "sha256": "fc512cf7ac161e2696dfd5b4084dabc412abfe2966c1954c3b4e16c1d8b95880"
+      "bytes": 11681,
+      "sha256": "51414f02fb12cfac6e4a7c60f208762c6bb8ddfe578766b7caa1c39738d4aae2"
     },
     {
       "path": "style.css",
-      "bytes": 9938,
-      "sha256": "9ce030eca08a3f6b2bb6bd7d0e05a58ffb10372e1e9455c43c014b0be6507cd3"
+      "bytes": 10068,
+      "sha256": "ab2a31b09acd661897227b18b310e51343471ff951ff0f1f9b4dea4490bc9308"
+    },
+    {
+      "path": "tests/audit-fixes.mjs",
+      "bytes": 8654,
+      "sha256": "f04a9e347ac0ca52cec4fe44a870185f77d442472126fa5b3103041c0a5d8c61"
+    },
+    {
+      "path": "tests/browser.mjs",
+      "bytes": 14392,
+      "sha256": "e8c9fe4ecebdb6ad5b1ebc9fc4dba968c898418d380e18ca8799bb9cdc63547d"
+    },
+    {
+      "path": "tests/fixes.mjs",
+      "bytes": 2398,
+      "sha256": "18dd51c60095081204cc451d39981c615d1bca0e06b157d79d499d8e58488f30"
+    },
+    {
+      "path": "tests/four-set.mjs",
+      "bytes": 14902,
+      "sha256": "544678da7016e36738e9de5b809ae9c69f5c56cffb43bed302e1315f44be9877"
+    },
+    {
+      "path": "tests/logo.mjs",
+      "bytes": 8083,
+      "sha256": "3aab4c05bad173d9338001edaf82f85badd208a75726f0f3e88d106ab7f3c8a3"
     },
     {
       "path": "tests/unit.mjs",
-      "bytes": 3964,
-      "sha256": "22fcf1319702762a65d453d574f2f9c3a07d982a985bcd67dac445ae0a367f9a"
+      "bytes": 4721,
+      "sha256": "ab139ddfdb29b3f184a8dba7deca8d8f352564d2be57f48fc93ae594bc048260"
     }
   ]
 }
