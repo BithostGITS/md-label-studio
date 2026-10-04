@@ -16,6 +16,8 @@
     "test:spine": "node tests/spine.mjs",
     "test:himd": "node tests/himd.mjs",
     "test:i18n": "node tests/i18n.mjs",
-    "test:fonts": "node tests/fonts.mjs"
+    "test:fonts": "node tests/fonts.mjs",
+    "test:autocomplete": "node tests/autocomplete.mjs",
+    "test:autocomplete:browser": "node tests/autocomplete-browser.mjs"
   }
 }

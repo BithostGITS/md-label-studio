@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: six-language UI, nine offline OFL font faces and license notices, application sources and reproducible tests. No user covers, project data, local artifacts, caches or private filesystem paths.",
+  "description": "Explicit public allowlist: optional direct-browser metadata lookup, six-language UI, offline assets/OFL licenses, application source and reproducible tests. No API artwork, user covers, projects, research images, local artifacts, caches or private credentials.",
   "files": [
     {
       "path": ".gitignore",
@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 15792,
-      "sha256": "2f9a65089c79dbe2eee1ee14e410fc23f58cd80ec707a9ef13a5e2c04db7fc7f"
+      "bytes": 19965,
+      "sha256": "459b13a7caf3146f70f08e6c6bd6c673ac151ebdf7cb88b28cf0a65cc5a170f0"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 16121,
-      "sha256": "44596467e65b8402134bf281cbedb90322ccc1f53028a2c44d0ddb8554609163"
+      "bytes": 17453,
+      "sha256": "c425d91d739716e1f6ca2541360070676a0d4df4f7f63020322aa252fcd5cb17"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -143,8 +143,8 @@
     },
     {
       "path": "build.mjs",
-      "bytes": 2967,
-      "sha256": "577c81057de9e8dabe63c3378245d517286e7e5be74f47f6ed0c9ff5de19d95f"
+      "bytes": 3014,
+      "sha256": "25e7b845371a0dc2a8350ab767a061508c4e1b4670f27825bca25bc2247fc7e4"
     },
     {
       "path": "geometry.mjs",
@@ -167,9 +167,24 @@
       "sha256": "411ea2b6479ad61966cfbc03c6607c15de073c6074b88c7a76509c010dbc5467"
     },
     {
+      "path": "online-i18n.mjs",
+      "bytes": 12731,
+      "sha256": "66c93c26c8a3da340b2794320b0ac406152e1409c3ad8f1a01526952cd0f1abf"
+    },
+    {
+      "path": "online-ui.mjs",
+      "bytes": 9321,
+      "sha256": "c6b381102a3122a8f3c63de8da35c5cef71a24dbcf6aafcaff2b40ea56297fd2"
+    },
+    {
+      "path": "online.mjs",
+      "bytes": 9829,
+      "sha256": "c0704dcc2c4e7ed00335e1c438463b6ead6ac67f90314eb48905f2c04aa61cee"
+    },
+    {
       "path": "package.json",
-      "bytes": 662,
-      "sha256": "38aa4bbcd280802c0d89807f63b02d10c06616fd46f2864b3e1acb6f4e807b23"
+      "bytes": 790,
+      "sha256": "44d9b27bfd23863f1a98074d8ff6729a698c8377d80e92e846559c577c656292"
     },
     {
       "path": "png.mjs",
@@ -183,13 +198,23 @@
     },
     {
       "path": "style.css",
-      "bytes": 11380,
-      "sha256": "9393de3e661005b4552f2f814cea35c4dc72e2b1ef782c426c6da85f42553b50"
+      "bytes": 12257,
+      "sha256": "7f4bffc70228814cf5088f2d7e418d7f656c72278c873e87dbd25655f891e004"
     },
     {
       "path": "tests/audit-fixes.mjs",
       "bytes": 8621,
       "sha256": "d29b2daa8cdc1d4cabeee74659a85594a47d5d48392d03cf85f4f7f352296a90"
+    },
+    {
+      "path": "tests/autocomplete-browser.mjs",
+      "bytes": 13448,
+      "sha256": "00085d617ea007c162bf4f105c4a5177af39f1f324a91800a5c7201fbe64e09c"
+    },
+    {
+      "path": "tests/autocomplete.mjs",
+      "bytes": 6057,
+      "sha256": "18464795937009d29b176c3b7d92598d427da70e9ca764eb6302be4e18eebbe9"
     },
     {
       "path": "tests/browser.mjs",
@@ -198,8 +223,8 @@
     },
     {
       "path": "tests/fixes.mjs",
-      "bytes": 2503,
-      "sha256": "72a3ea9179fb8f621236107065abf092a0e790c34c88318b3649a0869361f01b"
+      "bytes": 2550,
+      "sha256": "25629d7916388a644c80da83a48b224ece567d1e6e249f3cc60132c922e94da6"
     },
     {
       "path": "tests/fonts.mjs",
@@ -218,8 +243,8 @@
     },
     {
       "path": "tests/i18n.mjs",
-      "bytes": 20926,
-      "sha256": "6bb319b4f92499d2640ae0b611f1c86e1d3252bb0f4ff5eee73e78331b0f6c75"
+      "bytes": 21510,
+      "sha256": "432977e8571e9feb1bada29523a41b80a6340b4cf555c75338160ca70823667b"
     },
     {
       "path": "tests/logo.mjs",
@@ -236,5 +261,6 @@
       "bytes": 5439,
       "sha256": "b053a469e980b6ab92e7621b37799eb55a73e24789f9931b1bdd36e9c80feeb9"
     }
-  ]
+  ],
+  "totalBytes": 25259494
 }

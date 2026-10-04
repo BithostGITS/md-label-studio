@@ -1,7 +1,7 @@
 # 刻录之后 · MiniDisc Label Studio
 
 六语言界面、零运行时依赖的静态标签编辑器。所有封面和项目留在本机；无后端、无分析统计、
-无外部字体请求。[公开网站](https://bithostgits.github.io/md-label-studio/)。代码独立实现；原 MiniDisc 标志单独保留权利，见 THIRD-PARTY-NOTICES.txt。
+无外部字体请求。可选在线资料查询默认关闭；启用后输入的搜索词会直接发送给所选服务。[公开网站](https://bithostgits.github.io/md-label-studio/)。代码独立实现；原 MiniDisc 标志单独保留权利，见 THIRD-PARTY-NOTICES.txt。
 
 ## UI languages / 多语言界面
 
@@ -200,3 +200,18 @@ A/B/C/D 始终可独立编辑和导出；两套模式只切片整张纸的 A/B�
 选项默认关闭；v2 项目保存每套 hiMD 布尔值，旧 v1/v2 项目缺省关闭。
 标志来自 Wikimedia 的 Sony/Minidisc.org 来源位图，图稿及商标权利保留，
 见 THIRD-PARTY-NOTICES.txt；不属于代码 MIT 或字体 OFL 授权。
+
+## Optional online album lookup / 可选在线专辑查询
+
+Online lookup is **OFF on every fresh visit**, independently of UI language and saved projects. Enable the disclosed live-suggestion switch only if you accept sending typed artist/album terms, your IP and timing directly to the selected provider. No backend/proxy, keys, analytics, uploaded local files or automatic provider fan-out. Turning it off cancels pending work but cannot retract requests already sent.
+
+- MusicBrainz: choose the intended artist, then choose an album from artist-ID-constrained, album-only, locally ranked results. Partial words and bounded edit-distance queries are supported; native CJK text is preserved. Pinyin/transliteration and simplified/traditional conversion are not guaranteed. Artist/edition ambiguity is never silently resolved.
+- iTunes: **metadata only**. Select the Apple storefront explicitly (default US, not inferred from language). No Apple artwork is requested, displayed or stored. Remastered/deluxe metadata may describe a different edition; check every suggestion.
+- Selecting an album asks before replacing album/artist/year, records provider/ID/year provenance and applies metadata immediately. All fields remain editable. Search controls are separate from printable text, so editing label text does not automatically query a service.
+- Optional CAA import asks for rights confirmation **each time**. iTunes selection is matched lazily to MusicBrainz only after that confirmation; choose the matched album family yourself. Cover failures never undo metadata or block printing. Each errored stage has an independent retry, bounded to three attempts per operation; subsequent advice is manual entry/upload. Restarting a search or explicitly confirming another import creates a new operation.
+- MusicBrainz requests share a 1.1-second start budget, iTunes a 3.1-second budget (~20/min); these include retries and MB cross-matches. Web Locks plus bounded local-storage timestamps coordinate same-origin tabs where supported; without Web Locks tab coordination is best-effort, and shared-IP/provider-wide limits remain outside browser control. Respect service errors and use manual entry rather than repeated probing.
+- Cover data comes only from CAA/Internet Archive after confirmation, via bounded anonymous HTTPS fetch and still-image decode. Actual pixel dimensions are checked; below 600px on either axis or insufficient pixels for the current 300 DPI artwork area shows a warning, not a printing block. Manual uploads always remain available and supersede pending/fetched covers.
+- CAA approval is not copyright permission. Only use artwork you may reproduce. Printing, saved projects containing imported bytes, and sharing may require rights-holder permission. A representative group cover is not guaranteed to match a particular regional/MD/remaster edition.
+- Saved projects retain only selected metadata/provenance unless you explicitly import a cover; imported bytes become local raster artwork. Loading a project never follows network URLs. Ordinary offline exports are unchanged. Public samples use original generated artwork, not provider album covers.
+
+New deterministic tests: `node tests/autocomplete.mjs`. Actual-browser fixtures and offline SHA256 parity: `node tests/autocomplete-browser.mjs` (requires installed Playwright/Chrome as other browser suites do). For a standalone checkout, extract the pre-feature baseline with `mkdir -p ../autocomplete-baseline && git archive 067678a1c750ec3d582d1fc045e33d4655f325a7 | tar -x -C ../autocomplete-baseline`, then run with `AUTOCOMPLETE_BASELINE=../autocomplete-baseline` (relative to the test working directory). The development workspace defaults to its frozen `artifacts/autocomplete-feature/baseline-v0.9` snapshot, never the mutable publication checkout. Set `LIVE_AUTOCOMPLETE=1` to add **three bounded network-dependent metadata probes**; provider/CORS/503 failures are reported separately, not mistaken for deterministic regressions. No live artwork tests or bulk historical research reruns.
