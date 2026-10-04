@@ -18,8 +18,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 19965,
-      "sha256": "459b13a7caf3146f70f08e6c6bd6c673ac151ebdf7cb88b28cf0a65cc5a170f0"
+      "bytes": 20168,
+      "sha256": "778755a75a507f3a6da778910d9d683a5c6d8c96b0758b3782bf27f9da45f898"
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
@@ -28,8 +28,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 17453,
-      "sha256": "c425d91d739716e1f6ca2541360070676a0d4df4f7f63020322aa252fcd5cb17"
+      "bytes": 17914,
+      "sha256": "bab7f4724a38a471b4aa986935aed1ebbb204b699c6a04046bb7e8de8af5de43"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -168,18 +168,18 @@
     },
     {
       "path": "online-i18n.mjs",
-      "bytes": 12731,
-      "sha256": "66c93c26c8a3da340b2794320b0ac406152e1409c3ad8f1a01526952cd0f1abf"
+      "bytes": 16270,
+      "sha256": "08fe09107dedd229bb817d4f5e51d0475949493add793b244b04be494c14fd09"
     },
     {
       "path": "online-ui.mjs",
-      "bytes": 9321,
-      "sha256": "c6b381102a3122a8f3c63de8da35c5cef71a24dbcf6aafcaff2b40ea56297fd2"
+      "bytes": 10064,
+      "sha256": "d30a3dc256649688e82cff82760b95789b6be7ccf0bd00600358b6bb4662914b"
     },
     {
       "path": "online.mjs",
-      "bytes": 9829,
-      "sha256": "c0704dcc2c4e7ed00335e1c438463b6ead6ac67f90314eb48905f2c04aa61cee"
+      "bytes": 11529,
+      "sha256": "c600a8423e1a3c0cd34525860a808495139213397118033c7869c35f2e4a886e"
     },
     {
       "path": "package.json",
@@ -208,13 +208,13 @@
     },
     {
       "path": "tests/autocomplete-browser.mjs",
-      "bytes": 13448,
-      "sha256": "00085d617ea007c162bf4f105c4a5177af39f1f324a91800a5c7201fbe64e09c"
+      "bytes": 22249,
+      "sha256": "9e713eb32bb1e1db2f66c83abae6ee280ac6d639aa397232a02868feddc06bb1"
     },
     {
       "path": "tests/autocomplete.mjs",
-      "bytes": 6057,
-      "sha256": "18464795937009d29b176c3b7d92598d427da70e9ca764eb6302be4e18eebbe9"
+      "bytes": 10278,
+      "sha256": "a7dd0d1b42d18111e2d238d1209d7238b261173c980b84b92d49db4d313a3cc3"
     },
     {
       "path": "tests/browser.mjs",
@@ -262,5 +262,5 @@
       "sha256": "b053a469e980b6ab92e7621b37799eb55a73e24789f9931b1bdd36e9c80feeb9"
     }
   ],
-  "totalBytes": 25259494
+  "totalBytes": 25279162
 }
