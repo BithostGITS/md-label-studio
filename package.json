@@ -20,6 +20,11 @@
     "test:autocomplete": "node tests/autocomplete.mjs",
     "test:autocomplete:browser": "node tests/autocomplete-browser.mjs",
     "test:crossmatch": "node tests/crossmatch.mjs",
-    "test:crossmatch:browser": "node tests/crossmatch-browser.mjs"
+    "test:crossmatch:browser": "node tests/crossmatch-browser.mjs",
+    "test:case": "node tests/case-label.mjs",
+    "test:case:browser": "node tests/case-browser.mjs",
+    "test:case:engines": "node tests/case-engines.mjs",
+    "test:case:edges": "node tests/case-edges.mjs",
+    "test:case:raster": "node tests/case-raster.mjs"
   }
 }

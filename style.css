@@ -7,3 +7,12 @@
 
 /* Optional lookup UI does not change canvas geometry. */
 .online-lookup{margin:1rem 0;padding:1rem;border:1px solid #b7cbc4;border-radius:10px;background:#f3f7f3}.online-toggle{display:flex;gap:.5rem;align-items:center}.online-toggle input{width:auto}.online-lookup [hidden]{display:none!important}.online-lookup label{margin-bottom:.6rem}.online-lookup ul{list-style:none;padding:0;max-height:260px;overflow:auto}.online-lookup li{margin:.4rem 0;overflow-wrap:anywhere}.online-lookup li button{white-space:normal;text-align:left;max-width:100%}.online-lookup [role=listbox] button{width:100%;padding:.6rem;border:1px solid #abc0b8;border-radius:5px;background:white;color:#164e48}.online-lookup li[data-status=error]{color:#9c3029}.online-lookup li[data-status=running]{font-weight:600}.online-lookup li .text-button{margin-left:.5rem}.online-lookup .warning{color:#9c3029}
+/* Case/list editor remains a one-column print template; these are screen controls. */
+#case-editor {margin-top:1.5rem;max-width:100%;}
+.track-rows {padding-left:1.25rem;display:grid;gap:.8rem;}
+.track-row {border:1px solid var(--line,#ccc);padding:.5rem;min-width:0;}
+.track-row label {margin:.25rem 0;}
+.track-row input {max-width:100%;box-sizing:border-box;}
+.track-tools {display:flex;flex-wrap:wrap;gap:.3rem;}
+#case-editor .field-row {flex-wrap:wrap;}
+#case-editor select {max-width:100%;}

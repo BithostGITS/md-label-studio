@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const root=path.dirname(fileURLToPath(import.meta.url)),dest=path.join(root,'dist');
 const fonts=['atkinson','b612','noto-sans','noto-serif','wenkai','source-sans','noto-sc-regular','noto-tc','noto-jp'];
-export const entries=['index.html','style.css','app.mjs','online.mjs','online-ui.mjs','online-i18n.mjs','i18n.mjs','geometry.mjs','render.mjs','image-input.mjs','png.mjs','README.md','LICENSE','THIRD-PARTY-NOTICES.txt','assets/branding/minidisc.png','assets/branding/hi-md.png',...fonts.flatMap(f=>[`assets/fonts/${f}.woff2`,`assets/fonts/${f}-OFL.txt`]),'assets/fonts/manifest.json','assets/fonts/README.md'].sort();
+export const entries=['index.html','style.css','app.mjs','case-ui.mjs','case-i18n.mjs','project-v3.mjs','tracks.mjs','online.mjs','online-ui.mjs','online-i18n.mjs','i18n.mjs','geometry.mjs','render.mjs','image-input.mjs','png.mjs','README.md','LICENSE','THIRD-PARTY-NOTICES.txt','assets/branding/minidisc.png','assets/branding/hi-md.png',...fonts.flatMap(f=>[`assets/fonts/${f}.woff2`,`assets/fonts/${f}-OFL.txt`]),'assets/fonts/manifest.json','assets/fonts/README.md'].sort();
 // Never follow a redirected output or input tree. Only dist and our unique stage are owned.
 const prior=await lstat(dest).catch(e=>{if(e.code!=='ENOENT')throw e;});if(prior&&(!prior.isDirectory()||prior.isSymbolicLink()))throw Error('Refusing non-directory/symlink dist');
 const stage=await mkdtemp(path.join(root,'.dist-stage-'));let moved=false;

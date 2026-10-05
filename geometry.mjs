@@ -39,3 +39,24 @@ export function sheetManifest(sets,settings){
 }
 export function frontRaster(set,mode){const d=frontDimensions(set);if(mode==='compat'){if(set.profile!=='original')throw localeError('compatOnly');return {width:448,height:637,scale:11.811,compat:true};}return {width:px(d.w),height:px(d.h),scale:PPM,compat:false};}
 export function safeFilename(text){return (String(text).normalize('NFC').replace(/[<>:"/\\|?*\u0000-\u001f\u007f]/g,'_').replace(/[. ]+$/g,'').trim().slice(0,70)||'未命名专辑').replace(/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?=\.|$)/i,'_$1');}
+
+// Label-aware presets are independent of the historical paired-set manifest.
+export const CASE_PROFILE=Object.freeze({id:'kaih-case-71x60',w:71,h:60,source:{url:'https://github.com/kai-h/minidisc-label-generator',file:'app/app.js',license:'CC0-1.0',note:'Nominal case rectangle; physical fit not verified'}});
+export const SHEET_PRESETS=Object.freeze({
+ 'case-only':[['case',14.5,6],['case',14.5,68]],
+ 'mixed-compact':[['case',14.5,6],['front',9,68],['front',53,68],['spine',21,124],['spine',21,128.5],['spine',21,133],['spine',21,137.5]],
+ 'easier-cutting':[['case',14.5,6],['front',9,68],['front',53,68],['spine',21,124],['spine',21,129.5],['spine',21,135]]
+});
+export function defaultAssignments(sets,preset){const anchors=SHEET_PRESETS[preset];if(!anchors)throw localeError('caseInvalid');const seen={};return anchors.map(([kind],i)=>{const index=kind==='case'?i:kind==='front'?(seen.front||0):(seen.spine||0);seen[kind]=(seen[kind]||0)+1;return {setId:sets[index%sets.length].id,kind,copyIndex:0};});}
+export function labelDimensions(set,kind){if(kind==='case'){if(set.case?.profile!==CASE_PROFILE.id)throw localeError('caseInvalid');return {width:71,height:60};}if(kind==='front'){const {w,h}=frontDimensions(set);return {width:w,height:h};}if(kind==='spine'){const {sw,sh}=spineDimensions(set);return {width:sw,height:sh};}throw localeError('caseInvalid');}
+export function presetManifest(sets,settings){
+ const preset=settings.sheetPreset;
+ if(!preset||['legacy-two','legacy-four'].includes(preset))return sheetManifest(sets.slice(0,preset==='legacy-two'?2:preset==='legacy-four'?4:settings.setCount),settings);
+ const anchors=SHEET_PRESETS[preset],paper=PAPERS[settings.paper];if(!anchors||!paper)throw localeError('caseInvalid');
+ const refs=settings.labelAssignments;if(!Array.isArray(refs)||refs.length!==anchors.length)throw localeError('caseInvalid');
+ const W=paper.width,H=paper.height,cal=calibration(settings),fx=cal.x.factor,fy=cal.y.factor,ids=new Map(sets.map(s=>[s.id,s]));if(ids.size!==sets.length||sets.some(s=>typeof s.id!=='string'||!s.id))throw localeError('caseInvalid');
+ const labels=anchors.map(([kind,x,y],i)=>{const ref=refs[i],set=ids.get(ref?.setId);if(!set||ref.kind!==kind||!Number.isInteger(ref.copyIndex)||ref.copyIndex<0||ref.copyIndex>199)throw localeError('caseInvalid');const d={x:x+(W-100)/2,y:y+(H-148)/2,...labelDimensions(set,kind)},r={x:W/2+(d.x-W/2)*fx,y:H/2+(d.y-H/2)*fy,width:d.width*fx,height:d.height*fy};return {...ref,profile:kind==='case'?CASE_PROFILE.id:kind==='front'?set.profile:null,...(kind==='case'?{source:CASE_PROFILE.source}:{}),designMm:d,renderedMm:r,rectPx:pixelRect(r),cutline:{placement:'inside',widthMm:STROKE,widthPx:{x:STROKE*fx*PPM,y:STROKE*fy*PPM}},corners:'rectangular'};});
+ for(const l of labels){const r=l.renderedMm;if(!Object.values(r).every(Number.isFinite)||r.x<6||r.y<6||r.x+r.width>W-6||r.y+r.height>H-6)throw localeError('margin');}
+ for(let i=0;i<labels.length;i++)for(let j=i+1;j<labels.length;j++)if(overlaps(labels[i].renderedMm,labels[j].renderedMm)||overlaps(labels[i].rectPx,labels[j].rectPx))throw localeError('overlap');
+ return {schema:'md-studio/2',sheetPreset:preset,paperPreset:settings.paper,paperMm:{width:W,height:H},exportPx:{width:px(W),height:px(H)},dpi:DPI,marginsMm:{left:6,right:6,top:6,bottom:6},calibration:cal,physicalOutputVerified:false,labels};
+}
