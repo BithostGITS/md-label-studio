@@ -168,23 +168,23 @@
     },
     {
       "path": "online-i18n.mjs",
-      "bytes": 16270,
-      "sha256": "08fe09107dedd229bb817d4f5e51d0475949493add793b244b04be494c14fd09"
+      "bytes": 19502,
+      "sha256": "d63e478b5745bc5dcd48e447d1475f3cebf63a84a919872ccc3587cea82e0c52"
     },
     {
       "path": "online-ui.mjs",
-      "bytes": 10064,
-      "sha256": "d30a3dc256649688e82cff82760b95789b6be7ccf0bd00600358b6bb4662914b"
+      "bytes": 10524,
+      "sha256": "0c19a37838d5ed2178c3e5fbb3fd776640c6899b874c7675f6069ce485144e16"
     },
     {
       "path": "online.mjs",
-      "bytes": 11529,
-      "sha256": "c600a8423e1a3c0cd34525860a808495139213397118033c7869c35f2e4a886e"
+      "bytes": 15264,
+      "sha256": "4dd43e2e825f3ca4065b0c9faa6020224eedfb0e513f78b931443aa9bc55ab56"
     },
     {
       "path": "package.json",
-      "bytes": 790,
-      "sha256": "44d9b27bfd23863f1a98074d8ff6729a698c8377d80e92e846559c577c656292"
+      "bytes": 910,
+      "sha256": "35d2dbe8cfd3d873623e58329fcf45a8c20738be3c2ddadc8745ec8dcfce5713"
     },
     {
       "path": "png.mjs",
@@ -208,8 +208,8 @@
     },
     {
       "path": "tests/autocomplete-browser.mjs",
-      "bytes": 22249,
-      "sha256": "9e713eb32bb1e1db2f66c83abae6ee280ac6d639aa397232a02868feddc06bb1"
+      "bytes": 22462,
+      "sha256": "75d7cf469a8ea83a1e27744eeb8eb7c363801c22b19fba3bbfe029e00cca5eea"
     },
     {
       "path": "tests/autocomplete.mjs",
@@ -220,6 +220,16 @@
       "path": "tests/browser.mjs",
       "bytes": 14330,
       "sha256": "a5db78cab65b49f3cb7fd32a075b64574778a390abfc3f4f5c4fec5d33139db4"
+    },
+    {
+      "path": "tests/crossmatch-browser.mjs",
+      "bytes": 7561,
+      "sha256": "b279c7397e6230cbe1d2ad264b444eabd29b282357c357bc3a73e45cbef3ae8e"
+    },
+    {
+      "path": "tests/crossmatch.mjs",
+      "bytes": 3654,
+      "sha256": "4ef812187ba7aa239225362556b819d2d35d8f83de11b7414775019d2e11b8a8"
     },
     {
       "path": "tests/fixes.mjs",
@@ -262,5 +272,5 @@
       "sha256": "b053a469e980b6ab92e7621b37799eb55a73e24789f9931b1bdd36e9c80feeb9"
     }
   ],
-  "totalBytes": 25279162
+  "totalBytes": 25298137
 }

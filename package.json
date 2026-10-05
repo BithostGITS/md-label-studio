@@ -18,6 +18,8 @@
     "test:i18n": "node tests/i18n.mjs",
     "test:fonts": "node tests/fonts.mjs",
     "test:autocomplete": "node tests/autocomplete.mjs",
-    "test:autocomplete:browser": "node tests/autocomplete-browser.mjs"
+    "test:autocomplete:browser": "node tests/autocomplete-browser.mjs",
+    "test:crossmatch": "node tests/crossmatch.mjs",
+    "test:crossmatch:browser": "node tests/crossmatch-browser.mjs"
   }
 }
