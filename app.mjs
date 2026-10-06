@@ -58,7 +58,8 @@ function present({front,spine,sheet,cal,caseResult,config,active,view}){
  const caseProfile=CASE_PROFILES[sets[active].case?.profile];const caption=view==='case'?t('casePreviewCaption',{variant:caseProfile?.h===64?'J-Card':'CASE LABEL',width:caseProfile?.w??71,height:caseProfile?.h??60}):view==='label'?t('labelCaption',{set:'ABCD'[active]}):view==='sheet'?(config.sheetPreset==='case-set'?sheetTitle(config)+' · '+PAPERS[config.paper]?.width+' × '+PAPERS[config.paper]?.height+' mm':t('sheetCaption',{count:config.setCount,w:PAPERS[config.paper]?.width,h:PAPERS[config.paper]?.height})):t('rulerCaption');
  $('preview').setAttribute('aria-label',caption);$('preview-caption').textContent=caption+(selected.status==='rejected'?t('previewUnavailable'):'');
  const truncated=[front,spine].some(r=>r.status==='fulfilled'&&r.value.info?.truncated);
- $('render-status').textContent=(truncated?t('truncated'):'')+(failures.length?failures.join(' '):t('ready'));
+ const caseWarnings=caseResult.status==='fulfilled'?[caseResult.value.info?.truncated?t('kaihOverflow'):'',caseResult.value.info?.omitted?t('kaihOmitted',{count:caseResult.value.info.omitted}):''].filter(Boolean):[];
+ $('render-status').textContent=(truncated?t('truncated'):'')+(failures.length?failures.join(' '):t('ready'))+(caseWarnings.length?' '+caseWarnings.join(' '):'');
  error(failures.length?failures.join(' '):null);
 }
 function presentFonts(){for(const [key,{node,ok,cause}] of fontResults){node.textContent=t(ok?'fontLoaded':'fontFailed',{key:fontName(key)})+(cause?' · '+errorText(cause):'');}}

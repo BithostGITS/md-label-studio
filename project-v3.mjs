@@ -1,3 +1,4 @@
+import {validateCaseInterior,CASE_TEMPLATES} from './kaih-case.mjs';
 import {localeError} from './i18n.mjs';
 import {CASE_PROFILE,CASE_PROFILES,defaultAssignments,presetManifest} from './geometry.mjs';
 import {validateTrackList,emptyTrackList} from './tracks.mjs';
@@ -10,7 +11,7 @@ export function validateV3(data,legacyValidate){
  if(modern){if(!['compat','physical'].includes(data.mode)||!data.settings||typeof data.settings.calibrated!=='boolean'||!['measuredX','measuredY'].every(k=>typeof data.settings[k]==='number'&&Number.isFinite(data.settings[k]))||!Array.isArray(data.sets))fail();for(const s of data.sets){if(!s||!['w','h','sw','sh'].every(k=>typeof s[k]==='number'&&Number.isFinite(s[k]))||!['uppercase','hideHeader','hiMD'].every(k=>typeof s[k]==='boolean'))fail();}}
  const base=legacyValidate(modern?{...data,schema:'md-studio-project/2'}:data);
  const ids=new Set();base.sets=base.sets.map((set,i)=>{const raw=data.sets[i];const id=modern?raw?.id:'set-'+'ABCD'[i];if(typeof id!=='string'||!/^[A-Za-z0-9_-]{1,100}$/.test(id)||ids.has(id))fail();ids.add(id);set.id=id;
- if(modern&&raw.case!==undefined){if((version===3?raw.case?.profile!==CASE_PROFILE.id:!Object.hasOwn(CASE_PROFILES,raw.case?.profile))||raw.case.template!=='tracks')fail();set.case={profile:raw.case.profile,template:'tracks'};}
+ if(modern&&raw.case!==undefined){if((version===3?raw.case?.profile!==CASE_PROFILE.id:!Object.hasOwn(CASE_PROFILES,raw.case?.profile))||!CASE_TEMPLATES.includes(raw.case.template))fail();try{set.case=validateCaseInterior(raw.case);}catch{fail();}}
  set.trackList=modern&&raw.trackList!==undefined?validateTrackList(raw.trackList):emptyTrackList();return set;});
  if(version===4){const cfg=data.settings;if(!['legacy-four','case-set'].includes(cfg.sheetPreset)||cfg.setCount!==4||!ids.has(cfg.sheetSetId))fail();base.settings={...base.settings,setCount:4,sheetPreset:cfg.sheetPreset,sheetSetId:cfg.sheetSetId};
  if(cfg.labelAssignments!==undefined){if(!Array.isArray(cfg.labelAssignments))fail();const expected=cfg.sheetPreset==='case-set'?defaultAssignments(base.sets,'case-set',cfg.sheetSetId):[];if(cfg.labelAssignments.length!==expected.length||cfg.labelAssignments.some((r,i)=>r?.setId!==expected[i].setId||r.kind!==expected[i].kind||r.copyIndex!==0))fail();}

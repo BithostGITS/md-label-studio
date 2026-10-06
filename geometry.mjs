@@ -1,3 +1,4 @@
+import {CASE_TEMPLATES} from './kaih-case.mjs';
 import {t,localeError,errorText} from './i18n.mjs';
 /** Independent implementation; no original app code. All coordinates are millimetres. */
 export const DPI=300, PPM=DPI/25.4, STROKE=.10;
@@ -45,7 +46,7 @@ export const CASE_PROFILE=Object.freeze({id:'kaih-case-71x60',w:71,h:60,source:{
 export const JCARD_PROFILE=Object.freeze({id:'kaih-jcard-68x64',w:68,h:64,source:{note:'User-confirmed flat rectangle; folds and physical fit not verified'}});
 export const CASE_PROFILES=Object.freeze({[CASE_PROFILE.id]:CASE_PROFILE,[JCARD_PROFILE.id]:JCARD_PROFILE});
 export const SHEET_PRESETS=Object.freeze({'legacy-four':null,'case-set':['case','front','spine']});
-export function caseProfile(set){if(!Object.hasOwn(CASE_PROFILES,set.case?.profile)||set.case?.template!=='tracks')throw localeError('caseInvalid');return CASE_PROFILES[set.case.profile];}
+export function caseProfile(set){if(!Object.hasOwn(CASE_PROFILES,set.case?.profile)||!CASE_TEMPLATES.includes(set.case?.template))throw localeError('caseInvalid');return CASE_PROFILES[set.case.profile];}
 export function originalSetDimensions(set){const d=dimensions(set);return d.w===38&&d.h===54&&d.sw===58&&d.sh===3.5;}
 export function defaultAssignments(sets,preset,setId=sets[0]?.id){if(preset!=='case-set'||!sets.some(s=>s.id===setId))throw localeError('caseInvalid');return ['case','front','spine'].map(kind=>({setId,kind,copyIndex:0}));}
 export function labelDimensions(set,kind){if(kind==='case'){const p=caseProfile(set);return {width:p.w,height:p.h};}if(kind==='front'){const {w,h}=frontDimensions(set);return {width:w,height:h};}if(kind==='spine'){const {sw,sh}=spineDimensions(set);return {width:sw,height:sh};}throw localeError('caseInvalid');}

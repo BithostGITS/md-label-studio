@@ -79,10 +79,19 @@ individual SIL OFL 1.1 license, not this application’s MIT license. No endorse
 or separate, unverified permission from the font authors is claimed. Existing
 MiniDisc/Hi-MD artwork and trademark restrictions above remain unchanged.
 
-Nominal case-label dimensions: kaih MiniDisc Label Generator
+Case/J-card layouts, artwork and fonts: Kai Howells' MiniDisc Label Generator
 Source: https://github.com/kai-h/minidisc-label-generator
-Reference file: app/app.js, LABELS.case (71 x 60 mm)
-Reference code license: CC0 1.0 Universal. Only nominal dimensions were
-referenced; this application's renderer/layout implementation is independent.
-This attribution does not verify physical case fit or license third-party
-album artwork, font files, logo artwork or metadata-provider terms.
+Reference files: app/app.js label sizes case (71 x 60 mm) and jCard
+(68 x 64 mm), original sample case artwork and MiniDisc SVG logo assets.
+Code and asset license: CC0 1.0 Universal (see assets/kaih/CC0-1.0.txt).
+The CASE/J-card layout geometry, original sample artwork and MiniDisc SVG
+marks are adapted from that repository; the renderer painting them in this
+application is an independent implementation of those layouts. The bundled
+kaih font software consists of WOFF2 conversions of that repository's TTFs
+without glyph subsetting, family names renamed MD Kaih; fourteen families
+are SIL OFL 1.1 and Roboto Condensed is Apache License 2.0, each retaining
+its separate copyright/license notice in assets/kaih/*-LICENSE.txt and
+provenance/weight metadata in assets/kaih/fonts.json.
+This attribution does not verify physical case fit or print/fold accuracy,
+and does not license third-party album artwork supplied by users,
+brand/trademark rights, or metadata-provider terms.

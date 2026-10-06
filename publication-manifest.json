@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: two sheet layouts with CASE/J-Card variants, editable track lists, strict project v4, offline fonts/OFL, six-language UI, metadata-only online lookup, reproducible app/tests and existing language README pages. No user projects, covers, research, audit artifacts, caches or credentials.",
+  "description": "Explicit public allowlist: two sheet layouts with CASE/J-Card variants including Kai Howells CC0-1.0 case/J-card layouts, original artwork/SVG marks and offline kaih fonts with separate OFL/Apache licenses; editable track lists, strict project v4, six-language UI, metadata-only online lookup, reproducible app/tests and existing language README pages. No user projects, covers, research, audit artifacts, caches or credentials.",
   "files": [
     {
       "path": ".gitignore",
@@ -48,13 +48,13 @@
     },
     {
       "path": "THIRD-PARTY-NOTICES.txt",
-      "bytes": 5162,
-      "sha256": "de48e0db41d14fdf11c15dd4ce77c998968d86c6a2f527ff0b1fd90caa851bbf"
+      "bytes": 5814,
+      "sha256": "b77d842967fa0e41e0f0fd5cc8849e4c0528a321bcff18a38bd12d9511778b2b"
     },
     {
       "path": "app.mjs",
-      "bytes": 20033,
-      "sha256": "7d79d803a129d5970571570a57b23a3d357e823e9701fc5716507a3a0fcae22e"
+      "bytes": 20302,
+      "sha256": "0a5c585bfd9aa69eab48103deb825adaa69826d9f79ad52bd12ab760abd130db"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -167,14 +167,214 @@
       "sha256": "6f318ceeb4690bc6ef288f3c3dfe8dc57d4cba71fcd802fa67e389ae08346bbb"
     },
     {
+      "path": "assets/kaih/ArchivoBlack-LICENSE.txt",
+      "bytes": 4166,
+      "sha256": "91fa0b4f2d8f145e8fb5c0f3a8c1f32d19dd0032186da334eb9a2db69f3b602b"
+    },
+    {
+      "path": "assets/kaih/ArchivoBlack.woff2",
+      "bytes": 31240,
+      "sha256": "8f83fa2b0e73f79a2cdb545eb59be10c263f988ccca54857453d9d4ad572885b"
+    },
+    {
+      "path": "assets/kaih/BebasNeue-LICENSE.txt",
+      "bytes": 4159,
+      "sha256": "2070cce46b40db9835fcf47464b8ddffa43cc8f0a907be770f5351dc23522fd9"
+    },
+    {
+      "path": "assets/kaih/BebasNeue.woff2",
+      "bytes": 21468,
+      "sha256": "dd933b0d6ebeae4342b6462ad8dbde0e010ff44a9c2acb9368384c52ae7a8cbf"
+    },
+    {
+      "path": "assets/kaih/CC0-1.0.txt",
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    {
+      "path": "assets/kaih/CormorantGaramond-LICENSE.txt",
+      "bytes": 4153,
+      "sha256": "a05a0f98dfaae34d874aaf0e21376dd34116ad7288c9b671972fa9bfa405f3e7"
+    },
+    {
+      "path": "assets/kaih/CormorantGaramond.woff2",
+      "bytes": 215704,
+      "sha256": "afade7500b6cae0762a8d661d6d43d510089fa893e6feef6cb9ecd2042bcffc0"
+    },
+    {
+      "path": "assets/kaih/IBMPlexSans-LICENSE.txt",
+      "bytes": 4116,
+      "sha256": "aa1b1d4b83a9e62b193be7549256db44df2f58e9e42836406a50fb61b762877a"
+    },
+    {
+      "path": "assets/kaih/IBMPlexSans.woff2",
+      "bytes": 181980,
+      "sha256": "0d644f967e2253d194c602449e30cd2c3b0d51ada963568c409db7a151900207"
+    },
+    {
+      "path": "assets/kaih/Inter-LICENSE.txt",
+      "bytes": 4143,
+      "sha256": "3f47619ec943827026f4939fcaf76e0674f45d212c03f5aa8024ffd2492200fd"
+    },
+    {
+      "path": "assets/kaih/Inter.woff2",
+      "bytes": 252392,
+      "sha256": "940737522129301b41d2c89f32d12202433402ccbc2311c83a13085709a80397"
+    },
+    {
+      "path": "assets/kaih/LibreBaskerville-LICENSE.txt",
+      "bytes": 4172,
+      "sha256": "7e3e4f4b4c29351325758360dec7dbf0cade0db4e2a687b42457b35e44ea22b7"
+    },
+    {
+      "path": "assets/kaih/LibreBaskerville.woff2",
+      "bytes": 63848,
+      "sha256": "ff3d3695c957e1d4c9dd2b5c9095858e23470262b688005d00474611b99883ee"
+    },
+    {
+      "path": "assets/kaih/Oswald-LICENSE.txt",
+      "bytes": 4156,
+      "sha256": "f85b3721f740f459aec5609283fa8ca8a1e7393347c601544e6b6140a12d66e6"
+    },
+    {
+      "path": "assets/kaih/Oswald.woff2",
+      "bytes": 55016,
+      "sha256": "4361fbf3debfd0fe108891cd5d244b02cd52cbbd851fe43edda55c5fc1810521"
+    },
+    {
+      "path": "assets/kaih/PlayfairDisplay-LICENSE.txt",
+      "bytes": 4217,
+      "sha256": "f8c54074cb3e5ad0adb642be2a3fcb4740d8bec3bed1a62215b38b43e0e6a1cb"
+    },
+    {
+      "path": "assets/kaih/PlayfairDisplay.woff2",
+      "bytes": 103192,
+      "sha256": "3c6cb70db3c6f43f2aa87c8962d7b2bed97f90e28b67ec41ee3609e662083347"
+    },
+    {
+      "path": "assets/kaih/RobotoCondensed-LICENSE.txt",
+      "bytes": 11407,
+      "sha256": "6913ae9d1d836c29b3d83bc201b7fbdc9ea1a510d68bc9170e7ec9af0fb500ef"
+    },
+    {
+      "path": "assets/kaih/RobotoCondensed.woff2",
+      "bytes": 99456,
+      "sha256": "11d4f10cf61860e35dfb751969f78ff7e6c8fb958dcbaacb9ada3ec98b8a735a"
+    },
+    {
+      "path": "assets/kaih/SourceSans3-LICENSE.txt",
+      "bytes": 4146,
+      "sha256": "46ae2117abd84dc5073816a73a0afd5cc162fabde9faaeb967169c1b73ac5855"
+    },
+    {
+      "path": "assets/kaih/SourceSans3.woff2",
+      "bytes": 178904,
+      "sha256": "ba99427888e94fcd1e0cf9c05483a4a6dcabd026934f5b63f1ed31913460cc8c"
+    },
+    {
+      "path": "assets/kaih/SpaceGrotesk-LICENSE.txt",
+      "bytes": 4169,
+      "sha256": "92170be484cde9cb3d997ed0b223b8edfdc67a21b8c6602ebae51f1bdc565f5e"
+    },
+    {
+      "path": "assets/kaih/SpaceGrotesk.woff2",
+      "bytes": 49392,
+      "sha256": "a8631fe21ba3ef9e27bee9769116f4f61d2afdbcef3366f817b1905c11b90d81"
+    },
+    {
+      "path": "assets/kaih/Spectral-LICENSE.txt",
+      "bytes": 4159,
+      "sha256": "a0ee2f83bcfe02b356681d670fb38bfcc4d326d9f359a94598ba5cf70ca15136"
+    },
+    {
+      "path": "assets/kaih/Spectral.woff2",
+      "bytes": 80044,
+      "sha256": "73830639079a27d6c681c38a3162547f4c8744477bfe7e60f17a906cf6615f4f"
+    },
+    {
+      "path": "assets/kaih/Staatliches-LICENSE.txt",
+      "bytes": 4162,
+      "sha256": "4c94e8e640230bf69cfafdabd20888123dc625e7fde8f7bf0e10a08e18d5e03b"
+    },
+    {
+      "path": "assets/kaih/Staatliches.woff2",
+      "bytes": 23364,
+      "sha256": "2ae5e1c8ee23c77e0c66949ba808a61d2c97496c520958dc9dd63c1f5f74ad83"
+    },
+    {
+      "path": "assets/kaih/UnicaOne-LICENSE.txt",
+      "bytes": 4149,
+      "sha256": "24d89364a90ec7e3d0d198e45fd109b23063ce1912943fa58b505e49c65b03f3"
+    },
+    {
+      "path": "assets/kaih/UnicaOne.woff2",
+      "bytes": 24864,
+      "sha256": "c3798c8fef11f663adb4675d95dc6bfb185a6a1435a8849c629e160855815179"
+    },
+    {
+      "path": "assets/kaih/WorkSans-LICENSE.txt",
+      "bytes": 4163,
+      "sha256": "f5af40483bdc1318f2e50c40a1060ec60449e1b07f5b11f042e33f3e40d661a6"
+    },
+    {
+      "path": "assets/kaih/WorkSans.woff2",
+      "bytes": 99972,
+      "sha256": "cc96edb44cf907d8ba4456a5bb30369330903dbb95b03d5a39975da616376e43"
+    },
+    {
+      "path": "assets/kaih/art-0.png",
+      "bytes": 399573,
+      "sha256": "a4337226bb52ec36e2e33050af3b430f1c9b80d9187b632c44bfa8346b9460e4"
+    },
+    {
+      "path": "assets/kaih/art-1.png",
+      "bytes": 662222,
+      "sha256": "71c41bb544cf0ff033294bbd0242657a623986f2d4b5fc751132fb0a032c9f5e"
+    },
+    {
+      "path": "assets/kaih/art-2.png",
+      "bytes": 584458,
+      "sha256": "3082dd1ca4d9d18033f59010d4beef92dc6a0961af23b59395b668eb12651c58"
+    },
+    {
+      "path": "assets/kaih/art-3.png",
+      "bytes": 386988,
+      "sha256": "30e504255bf097f0562ffaf3be2bef648eb1adcbdbdca19393c1cbd94671200e"
+    },
+    {
+      "path": "assets/kaih/art-4.png",
+      "bytes": 811028,
+      "sha256": "99317e9e9a5b91f7d8c2367a48b37820558ceea66fa358feb3e0a24175936a61"
+    },
+    {
+      "path": "assets/kaih/art-5.png",
+      "bytes": 527128,
+      "sha256": "2c0ddc06a8767f4db5ed72731e0cc632c471351cf0d951d26cb623022494ef24"
+    },
+    {
+      "path": "assets/kaih/fonts.json",
+      "bytes": 29464,
+      "sha256": "660a883a85daeabffaee0704194c0a8713f56ad015407f3c184203329210aee9"
+    },
+    {
+      "path": "assets/kaih/minidisc-logo-black.svg",
+      "bytes": 5593,
+      "sha256": "9a73c39d724874ccb2a2d86892884cfa7ac51b348e19a168cbf8c94a4fc678fc"
+    },
+    {
+      "path": "assets/kaih/minidisc-logo-white.svg",
+      "bytes": 5585,
+      "sha256": "767ae4562ea98805285fd42f11086ea291bc6cd69c1710a530ddbe33f9d8e9a6"
+    },
+    {
       "path": "build-manifest.json",
-      "bytes": 6298,
-      "sha256": "9feb0dbc5fb2b0ffc91c4ad34f8762416215221d4be16ca48215f3971f25bcb0"
+      "bytes": 13524,
+      "sha256": "8e94a27427b87b9cc5ffff3af1d52ae28027b5237dd5384df9ecf55008ebd5f5"
     },
     {
       "path": "build.mjs",
-      "bytes": 3074,
-      "sha256": "0b747661fa8dff1fdc49459e9250341438c86735241980244c9c51d1fd312da7"
+      "bytes": 3242,
+      "sha256": "9bce5aad35dfbf5a4a6ee7141759bf85753b6b44c719dae8e31259912cb27d57"
     },
     {
       "path": "case-i18n.mjs",
@@ -183,18 +383,18 @@
     },
     {
       "path": "case-ui.mjs",
-      "bytes": 11181,
-      "sha256": "fb0674b938707bd037af1d57284cdf7089cde2973bbb108334cfd4cae8934a74"
+      "bytes": 11446,
+      "sha256": "e3f3cbdc708776f0c4dbd1482515bbb35aecd0d2c460bcfe376c8b6673ebc98d"
     },
     {
       "path": "geometry.mjs",
-      "bytes": 8941,
-      "sha256": "9ae8a20f4874acd8ba7f0f2a67d87391c1bf714d519d9e21885604d67ffd014a"
+      "bytes": 9004,
+      "sha256": "7b87c175ca6d38edde6bf005dba1f1c4051d53aba552a0a9ab18313e11f42db4"
     },
     {
       "path": "i18n.mjs",
-      "bytes": 93044,
-      "sha256": "4d51c10fd64770c9062d4302919320ac955ba1d3a26667ed037fcb1b1fc0ebb0"
+      "bytes": 93126,
+      "sha256": "71fc6c1bcb2c671be4aa2742770918471d618f83e56d1337a7885c35e6107620"
     },
     {
       "path": "image-input.mjs",
@@ -205,6 +405,26 @@
       "path": "index.html",
       "bytes": 12376,
       "sha256": "2cbffa02ee68aae89f214c4edccafc79fd7e760fcd41070cf1105830946e6746"
+    },
+    {
+      "path": "kaih-assets.mjs",
+      "bytes": 2689,
+      "sha256": "1ded5accc5fe1611831b043c2de6260d28c2c4d6d2d80743de5a62ce0b4322de"
+    },
+    {
+      "path": "kaih-case.mjs",
+      "bytes": 7060,
+      "sha256": "80388cc57af5efd321755be98c0ecaadeedec9f77685aed47cf2609a42e6f233"
+    },
+    {
+      "path": "kaih-i18n.mjs",
+      "bytes": 11084,
+      "sha256": "bd34d15aca37ef4074d704d4e06838126dc17ee30eb891fbe19bd08c5f1a37f1"
+    },
+    {
+      "path": "kaih-ui.mjs",
+      "bytes": 5262,
+      "sha256": "8c72f1e060de69eab720d87b230d45904d2d9aecb22ba3c5ae3260eed4d30358"
     },
     {
       "path": "online-i18n.mjs",
@@ -223,8 +443,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 1305,
-      "sha256": "fa251c20bca9020a6737fe85858138d47bee091e25b664239e1e20f1c0f0ae58"
+      "bytes": 1406,
+      "sha256": "2baa21c0f11ba84facb1cb65f5178cf035e2cb5328162bdb21bc50fbe197d4a8"
     },
     {
       "path": "png.mjs",
@@ -233,13 +453,13 @@
     },
     {
       "path": "project-v3.mjs",
-      "bytes": 4508,
-      "sha256": "92002051216afdbefd5baf45b62e27bb64753555321e3fcb3081517afe0ffbd2"
+      "bytes": 4597,
+      "sha256": "bdd7f9080a421fe4207b977199b822a2e7c118b79f3e0106fa33e1fed8ad7d74"
     },
     {
       "path": "render.mjs",
-      "bytes": 18476,
-      "sha256": "dd778b5d29b378bb3fd56d65a5e68ef57aa3de1fa97ec8584b230c2b78a7be85"
+      "bytes": 19173,
+      "sha256": "bd7c7587ef4ae01c67f4d7dfebd35cfaccefb40c9606c895339b19858cb92965"
     },
     {
       "path": "style.css",
@@ -274,12 +494,12 @@
     {
       "path": "tests/case-browser.mjs",
       "bytes": 18202,
-      "sha256": "360da7ca010026764b80fb9f350bc0a2fa42a37009471aa46003429a11d16f01"
+      "sha256": "b433b8ae77df8c17a6fa1c3a7f10bb55b25ae7aff92740992b282d3dc8580b7f"
     },
     {
       "path": "tests/case-edges.mjs",
-      "bytes": 9810,
-      "sha256": "0677a04fb4c5a043721ed2cd70792a302a4dce7cdb39f676d99295d4916eec53"
+      "bytes": 10198,
+      "sha256": "7e2a2e001bd1df6a8b8704508b0542e93dc5f44540a082cc3b35e21206235c34"
     },
     {
       "path": "tests/case-engines.mjs",
@@ -308,38 +528,48 @@
     },
     {
       "path": "tests/fixes.mjs",
-      "bytes": 2610,
-      "sha256": "04ffd32588985b30c7ca4d82d08327148f308a1717ded09ddb6ee74c47e2277a"
+      "bytes": 2715,
+      "sha256": "4e5f679cc03aa46cddc2a943f80834f19ddee9469f897aabd41044301a257649"
     },
     {
       "path": "tests/fonts.mjs",
-      "bytes": 4849,
-      "sha256": "77de0bef405bc2843084080eb3fcf1a8e9982271b4b0b7d214a0e0d7d12dbba2"
+      "bytes": 4872,
+      "sha256": "ac6a940e711f6b7b169b4660faa5cdea936a83419c3127740a2543f6346c7ef9"
     },
     {
       "path": "tests/four-set.mjs",
       "bytes": 15067,
-      "sha256": "a2945766622caa2806ba9863ffc99444b86fe125b844609dabb41c9669f31fef"
+      "sha256": "75872009aba5111d2d31692ba0396d86b354f1c249fd52c8e6f8a593efc88003"
     },
     {
       "path": "tests/himd.mjs",
       "bytes": 18647,
-      "sha256": "1af75ae9e4d09b6c2ba3ef3b3d6adf7f4768a5b3cb9983db80607d26cfcb462f"
+      "sha256": "366db77c1bf1133f32f71d2e0b1351d916ac6e0a4c8387716f981a53dbdb0fba"
     },
     {
       "path": "tests/i18n.mjs",
-      "bytes": 21617,
-      "sha256": "ff42e6eceabe80156527049177e8ad67eccea58ff6c1484f9c77a41d3c1a58a9"
+      "bytes": 21640,
+      "sha256": "f68fbd51109b75d073aa7d56c2753cbfac1224ff3c94d184bd919835566b2c1e"
+    },
+    {
+      "path": "tests/kaih-browser.mjs",
+      "bytes": 21563,
+      "sha256": "81e4cfb1e80d431401ef0903b94ac80ec905a0285113660ae9dc3b12642b29a7"
+    },
+    {
+      "path": "tests/kaih-case.mjs",
+      "bytes": 7437,
+      "sha256": "6ad1fe128d2d8b6434fbe5ddc8bc55a93c2d2a65e6882e429dd09250dd077c51"
     },
     {
       "path": "tests/layout-v2-boundaries.mjs",
-      "bytes": 6558,
-      "sha256": "4a1db821f1d4b54fd656b0cd738fe017268935eb7fbed2b3bc3a8efbb46dc8d6"
+      "bytes": 6581,
+      "sha256": "d59da8fea3f5168a7909fc98a8b2a46845e9c0c6ff4cdce1b9af04bb69501556"
     },
     {
       "path": "tests/layout-v2-browser.mjs",
-      "bytes": 17717,
-      "sha256": "5fc0d5cf40abe3bad2bdf403d68fec3d387a270b51b344fd3860f033fb2ddb02"
+      "bytes": 17825,
+      "sha256": "3cf44601bd75835e2e74d79f8840533c2e9a9694d6f55d4eac7ca60670e7a4cb"
     },
     {
       "path": "tests/logo.mjs",

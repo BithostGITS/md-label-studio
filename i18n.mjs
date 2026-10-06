@@ -1,3 +1,4 @@
+import {extendKaihMessages} from './kaih-i18n.mjs';
 import {extendCaseMessages} from './case-i18n.mjs';
 // Static UI locales. No services, requests, assets, or canvas text translation.
 export const messages = {
@@ -1288,6 +1289,7 @@ export const messages = {
 };
 
 extendCaseMessages(messages);
+extendKaihMessages(messages);
 export const LANGUAGES = Object.freeze(['en', 'zh-Hans', 'zh-Hant', 'es', 'fr', 'ja']);
 export const STORAGE_KEY = 'md-studio-language';
 let language = 'en';
