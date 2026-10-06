@@ -22,7 +22,7 @@ for 日本語. All are freely redistributable under SIL OFL 1.1, with source URL
 full license files in [the font documentation](./assets/fonts/README.md).
 All nine faces total 23.43 MiB (9.07 MiB added), within the existing 25 MiB font
 budget. Original font files and old projects’ font choices are unchanged.
-Font choices are saved per set in the existing backward-compatible project schema;
+Font choices are saved per set in project v4 (v1/v2/v3 imports are supported);
 a selected font outside the current language’s suggestions remains selected and
 is marked as retained. Switching language never automatically selects a different
 font. Selecting a font deliberately changes label rendering; export bytes remain
@@ -66,17 +66,17 @@ python3 -m http.server 8080 --bind 127.0.0.1
 ## 功能
 
 - A/B/C/D 四套独立专辑、艺术家、年份、封面、字体、主题、大小写、隐藏头部和尺寸。
-  默认打印四套；可选原两套 A/B 布局。切换套数不丢失 C/D，四套都保存在项目内。
+  仅两种排版：默认无盒贴四套，或含盒贴单套。切换模式不丢失任何套装，四套都保存在项目内。
 - 上传 PNG/JPEG/WebP（≤12 MiB），等比 contain；拒绝 SVG/动图、坏文件、超过6400万像素的图。
   边长超过2048像素时本地降采样。四款原创程序绘制示例随机切换，只更改内容/封面。
 - 深色 `#231F20` / 白字，浅色白底 / 黑字。英文大写不改变编辑值与文件名。
 - 原版几何：38×54；头部5，封面38×38；正文 x2 / y43 / w34 / h11。
   隐藏头部后封面 y0，正文 y38 / h16。正文字号1.76、行距2.12；长文字区域截断不缩小。
-  书脊仅专辑与艺术家，过长省略。保留原输入；无虚构的曲目列表功能。
+  书脊仅专辑与艺术家，过长省略。保留原输入；盒贴曲目列表独立编辑。
 - 所有生成标签都有 **0.10 mm 内置裁切线**。此线是新增功能，不属于原版像素完全复现。
-- 正面/书脊 PNG、四套或两套整张 PNG、未补偿双轴校准 PNG；全部带300 DPI `pHYs`。
-- 本地项目 JSON v2 保存/载入（含四套上传图片），兼容旧 v1 双套项目：保留 A/B 和原两套布局，
-  新增独立 C/D 示例，可手动切换四套。几何 manifest 下载、安全文件名、载入失败提示。
+- 正面/书脊/盒贴 PNG、无盒贴四套或含盒贴单套整张 PNG、未补偿双轴校准 PNG；全部带300 DPI `pHYs`。
+- 本地项目 JSON v4 保存/载入（含四套上传图片），兼容 v1/v2/v3；旧两套布局迁移为四套并要求确认复核，
+  v1 新增独立 C/D 示例。几何 manifest 下载、安全文件名、载入失败提示。
   不会自动把项目写入浏览器持久存储；关闭/刷新前请保存。
 - 字体：保留原五款，新增 Source Sans 3、Noto Sans SC 常规 400、Noto Sans TC、Noto Sans JP；九款均离线，完整授权和来源见字体目录。
 
@@ -99,7 +99,7 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
   正面38×54 mm：A/B 起点 (9,6)/(53,6)，C/D (9,62)/(53,62)；
   书脊58×3.5 mm：x21，y118/123.5/129/134.5。裁切线0.10 mm向内，安全边距至少6 mm。
   自定义尺寸沿用这些锚点，重叠或超出安全边距时拒绝整张导出，不自动缩小或换位。
-  有效的独立正面/书脊导出仍可使用；两套模式保留旧居中布局。
+  有效的独立正面/书脊导出仍可使用；旧两套布局仅作为导入迁移来源，不再可选。
 - 可选真正4×6英寸：**101.6×152.4 mm →1200×1800 px**，不宣称是SELPHY纸。
 - 页面始终提示未经物理验证。默认双轴系数1，未校准。
 - 测试纸水平、垂直标尺都是以纸张中心为中点的 **50 mm 全长**（−25…+25）；绝非100mm横向标尺。
@@ -113,7 +113,7 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
 
 ## 几何清单 / 独立 checker 适配
 
-`schema: md-studio/1`，包含纸张、导出画布、两套或四套front/spine、毫米及像素边界、内置裁切线和校准。
+无盒贴四套保持 `schema: md-studio/1`；含盒贴单套使用 `md-studio/2`。包含纸张、导出画布、毫米及像素边界、内置裁切线和校准。
 `designMm` 是原始中心布局，`renderedMm = center + (designMm-center)*factor`。
 既有独立 `tests/geometry-check.mjs` 只识别关于原点的乘法；为了兼容，清单中
 `nominalMm` 的 **位置**显式预平移为 `renderedPosition/factor`，尺寸仍是名义尺寸。
@@ -162,8 +162,8 @@ Sony尺寸为社区测量，不是官方通用贴纸规格。未模拟Sony单角
 
 ## 四套项目边界与恢复（审计 F1–F4 修复）
 
-A/B/C/D 始终可独立编辑和导出；两套模式只切片整张纸的 A/B，不隐藏 C/D，
-切换模式保持当前编辑套装。键盘左右循环仅遍历可见、启用的标签页。
+A/B/C/D 始终可独立编辑和导出；含盒贴单套模式通过独立的排版套装选择器选取 A/B/C/D，
+切换编辑标签页不改变排版套装，切换模式保持当前编辑套装。键盘左右循环仅遍历可见、启用的标签页。
 
 本地项目 JSON 保持原始四套字段和已接受的图片 data URL，不去重、不额外重编码、
 不静默截断。上传仍限每张 12 MiB；原有最长边超过 2048 px 的等比缩图规则未改变。
@@ -218,63 +218,82 @@ New deterministic tests: `node tests/autocomplete.mjs`. Actual-browser fixtures 
 
 Apple storefront catalogs vary. CN may return empty or unrelated Chinese-music results; choose TW/HK explicitly and search again. No automatic cross-storefront requests are sent.
 
-## Case labels and editable track lists (MVP)
+## Layout v2: exactly two sheet modes (local, unpublished)
 
-Enable the optional case label for a saved set: profile `kaih-case-71x60`, nominal
-71 × 60 mm, physical PNG 839 × 709 at 300 DPI. This is a rectangular track-list
-label with a 0.10 mm inside border, not a chamfered disc label or folding j-card.
-The nominal size is attributed to
-<https://github.com/kai-h/minidisc-label-generator> (`app/app.js`, CC0-1.0);
-fit to your actual protective case and printed readability remain unverified.
+1. **No case · 4 sets** (default): unchanged historical A/B/C/D front/spine sheet.
+2. **With case · 1 set**: explicitly choose a saved set, then choose its variant:
+   **CASE LABEL 71 × 60 mm** (`kaih-case-71x60`, 839 × 709 standalone PNG) or
+   **J-Card 68 × 64 mm** (`kaih-jcard-68x64`, 803 × 756 standalone PNG).
 
-SELPHY presets, in millimetres on 100 × 148 paper with 6 mm safety margins:
-- Cases only: two cases at (14.5,6) and (14.5,68).
-- Mixed compact: case (14.5,6); fronts (9,68)/(53,68); spines
-  (21,124)/(21,128.5)/(21,133)/(21,137.5). The spine gaps are **1 mm**.
-- Easier cutting: same case/fronts; spines (21,124)/(21,129.5)/(21,135).
+Both modes retain all four sets. Editor tabs never silently change `sheetSetId`.
+The single sheet has exactly one case, one 38 × 54 front and one 58 × 3.5 spine,
+all from the same set and with copyIndex 0. No independent assignment/copy UI,
+no duplicate set-count selector and no selectable legacy case presets remain.
+Standalone label export is not a third sheet mode.
 
-Choose each label's set explicitly; assignments persist as
-`{setId,kind,copyIndex}`. Invalid custom front/spine sizes reject the sheet,
-never shrink. Cases only do not depend on unused front dimensions or cover
-art. Two complete case+front+spine sets cannot fit within the safe area
-(13,030 > 11,968 mm²), independently of rotation. Legacy front/spine and
-2/4-set rendering remain on the historical path and retain byte parity.
+Option A, on SELPHY 100 × 148 mm paper (1181 × 1748 px at 300 DPI):
+- CASE: case (14.5,8.25,71,60), front (31,75.25,38,54), spine (21,136.25,58,3.5).
+- J-Card: case (16,6.25,68,64), front (31,77.25,38,54), spine (21,138.25,58,3.5).
 
-Track rows support manual addition, deletion, move, include/exclude,
-renumber and undo of the last list change. Duration input accepts mm:ss or
-mm:ss.fff; blank means unknown. Integer-ms totals use included working
-values plus optional inter-track gap and reserved time (both default **0**),
-not album trackCount. 74/80-minute overflow is warned and never deletes rows;
-unknown included durations make the total a lower bound, not a verified fit.
-The fixed one-column case template prints at most **13 included rows**:
-3 mm padding, 2.3 mm list font, 3 mm pitch, 4/49/10 mm number/title/time
-columns separated by 1 mm gaps. Longer titles elide at grapheme boundaries;
-full text is retained. More than 13 rows block case export rather than
-silently clipping or shrinking. Missing font glyphs also block export.
+Tuples are x/y/width/height in mm. Both stacks are centered with 7 mm cutting
+clearances and 0.10 mm inside cutlines. Incompatible selected front/spine
+sizes explicitly block the single sheet; **Restore original sizes** is an
+explicit action, never a silent reset. True 4 × 6 inch is a separate paper
+attribute (101.6 × 152.4 mm / 1200 × 1800 px), not another sheet mode.
+Calibration remains a saved attribute and can explicitly fail the fit gate.
 
-Optional iTunes sync requires the existing online-consent switch and a
-selected iTunes album. Preview the track lookup, check edition/storefront,
-then explicitly replace or merge. Re-sync preserves modified fields for
-matching source track IDs; merge also preserves manual rows and ordering.
-Source disc/track numbers, original title/duration and snapshot counts are
-stored separately. Nothing is fetched when a project is opened. Disabling
-online clears HTTP cache, not your working tracks. Search and song lookups
-share the existing 3100 ms request budget, cancellation, timeout, size and
-Retry-After gates. URL cache is bounded to 40 entries with **24-hour** freshness;
-explicit sync refreshes it, and cached timestamps do not pretend a new fetch.
-No lyrics, audio previews or track-sync cover requests are made. This is not
-blanket legal clearance; current Apple terms/live CORS and storefront
-completeness must be checked before release.
+CASE typography is unchanged: 13 included rows, 49 mm title column.
+Flat J-Card uses 15 included rows, a 46 mm title column and duration x55 mm;
+font size and 3 mm pitch do not shrink. Switching 15-row J-Card to CASE retains
+all rows/selections and blocks case/single-sheet exports with a 2-row warning;
+switching back restores printability. Unused case overflow never blocks the
+no-case sheet or standalone front/spine exports. Full titles are saved;
+printed titles elide at grapheme boundaries. Missing glyphs block exports.
+J-Card folds, panels, physical case fit and printed readability are unverified.
 
-Projects now save as `md-studio-project/3` with stable set IDs. v1/v2 migrate
-without dropping old fields, art or fonts; old readers reject v3 rather than
-silently losing tracks. Product limits: 200 rows/set, 2000 characters/title,
-nullable integer durations 0–86,400,000 ms. Geometry manifests use `md-studio/2`
-for label-aware presets; historical paired-set manifests stay byte-unchanged
-as `md-studio/1`. Project and geometry schema versions are independent.
+Manual add/delete/move/include/renumber/undo and 74/80-minute audio capacity
+remain unchanged. Durations accept mm:ss or mm:ss.fff; unknown durations make
+the total a lower bound. Optional iTunes track sync still requires consent,
+explicit album selection, preview and replace/merge confirmation. Re-sync
+preserves modified source-track fields; merge preserves manual rows/order.
+Opening a project performs no network lookup. No audio, lyrics or track-sync
+cover requests are added. Limits remain 200 rows/set, 2000 characters/title,
+nullable integer durations 0–86,400,000 ms.
 
-Local acceptance commands (browser tools must already exist):
-`npm run test:case`, `npm run test:case:browser`, and
-`npm run test:case:engines`. The cross-engine suite uses the existing supported
-Playwright/macOS12 binaries; WebKit is not a Safari acceptance claim. These
-commands build/test locally and do not deploy.
+### Saved project migration
+
+Read v1/v2/v3 and write `md-studio-project/4`; old readers reject v4 atomically.
+Validate original fields/references before remapping. All four sets, art,
+fonts, tracks, provenance, dimensions, paper, calibration and export mode are
+retained. Imported source files are never overwritten automatically.
+
+- `legacy-four` → no-case four-set, unchanged; saved case data does not infer mode.
+- `legacy-two` → no-case four-set; warn that C/D now appear and require review.
+- `case-only` → single sheet using the first validated case assignment; warn
+  the second case no longer appears.
+- `mixed-compact` / `easier-cutting` → single sheet using the case assignment's
+  set; warn about removed extras/cross-set assignments.
+
+All old cases remain CASE LABEL, never inferred J-Card. Bounded
+`layoutMigration` metadata records before/after/removed counts, cross-set and
+C/D changes, and acknowledgement. Sheet/manifest exports are disabled until
+**Review and accept this layout** is clicked. Failed imports preserve current
+state and legitimate undo; successful replacement clears old-project undo.
+References in v4 are canonical and derived, not editable redundant assignments.
+Geometry manifests remain `md-studio/1` for no-case and `md-studio/2` for single-set.
+
+### Local acceptance commands
+
+`npm test`, `npm run test:autocomplete`, `npm run test:case`,
+`npm run test:case:browser` (the layout-v2 browser suite), `npm run test:i18n`,
+and `npm run build`. Existing browser tools must already be installed; set
+`PLAYWRIGHT_MODULE` to their module path when outside Node's search path.
+The layout-v2 suite accepts `LAYOUT_ENGINE=chromium|firefox|webkit` and requires
+immutable baseline extractions at `../artifacts/case-label/layout-v2-baseline-v091`
+and `../artifacts/case-label/layout-v2-baseline-663eb18`; each baseline file is
+verified against Git blobs before use. Baseline commits are respectively
+`b19ed652067b43a6222245105a6f935861875c40` and
+`663eb1851abc8ae011d65fe394898084430ff076`.
+Old MVP preset-specific browser scripts are historical and are not layout-v2
+acceptance. WebKit is not Safari; legacy Firefox does not certify current Firefox.
+These commands build/test locally only: no commit, push or deployment.
