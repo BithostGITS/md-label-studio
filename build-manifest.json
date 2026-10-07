@@ -17,8 +17,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 20302,
-      "sha256": "0a5c585bfd9aa69eab48103deb825adaa69826d9f79ad52bd12ab760abd130db"
+      "bytes": 21764,
+      "sha256": "5a34c3430ce20dcd55ba3ddff15a8b36253c238ed7c27ea8fcf1ae3d2bedad91"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -337,8 +337,8 @@
     },
     {
       "path": "case-ui.mjs",
-      "bytes": 11446,
-      "sha256": "e3f3cbdc708776f0c4dbd1482515bbb35aecd0d2c460bcfe376c8b6673ebc98d"
+      "bytes": 11616,
+      "sha256": "ea2e228deb2b926b21dc30bb9940b093eb170c82ce2c3cfdf328830aca9a2ff4"
     },
     {
       "path": "geometry.mjs",
@@ -367,18 +367,18 @@
     },
     {
       "path": "kaih-case.mjs",
-      "bytes": 7060,
-      "sha256": "80388cc57af5efd321755be98c0ecaadeedec9f77685aed47cf2609a42e6f233"
+      "bytes": 11428,
+      "sha256": "994724f2024904f8f535842d00f1b03c1fe49966b145aeaf1f516e4e7c25f8f6"
     },
     {
       "path": "kaih-i18n.mjs",
-      "bytes": 11084,
-      "sha256": "bd34d15aca37ef4074d704d4e06838126dc17ee30eb891fbe19bd08c5f1a37f1"
+      "bytes": 17530,
+      "sha256": "9915fc25c1f2be4c95fdd07b0e23ab084f30c3628ca6a95e17f899e1f44a9798"
     },
     {
       "path": "kaih-ui.mjs",
-      "bytes": 5262,
-      "sha256": "8c72f1e060de69eab720d87b230d45904d2d9aecb22ba3c5ae3260eed4d30358"
+      "bytes": 6536,
+      "sha256": "47800d07a52abd38289549128b2d9e892d12703e4b6986783aa0d5d4400b74e6"
     },
     {
       "path": "online-i18n.mjs",
@@ -402,13 +402,13 @@
     },
     {
       "path": "project-v3.mjs",
-      "bytes": 4597,
-      "sha256": "bdd7f9080a421fe4207b977199b822a2e7c118b79f3e0106fa33e1fed8ad7d74"
+      "bytes": 4898,
+      "sha256": "f6d33d7e7ffc6b7ef82d5596d6cef38056fb13d8ba000c113f8f4b69d8b42424"
     },
     {
       "path": "render.mjs",
-      "bytes": 19173,
-      "sha256": "bd7c7587ef4ae01c67f4d7dfebd35cfaccefb40c9606c895339b19858cb92965"
+      "bytes": 20208,
+      "sha256": "e4cc6f83911b8cab93855862793dbdfcec16f7ef69b1e9d85a2891332474f16f"
     },
     {
       "path": "style.css",
@@ -421,5 +421,5 @@
       "sha256": "54f27f31b1962f7e2b73c1911677ee29a7c9bce2aded0c3ea2d9c9bc5a8f4002"
     }
   ],
-  "totalBytes": 30207355
+  "totalBytes": 30222411
 }
