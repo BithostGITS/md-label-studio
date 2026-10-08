@@ -1,5 +1,5 @@
 {
-  "description": "Explicit public allowlist: two sheet layouts with CASE/J-Card variants including Kai Howells CC0-1.0 case/J-card layouts, original artwork/SVG marks and offline kaih fonts with separate OFL/Apache licenses; editable track lists, strict project v4, six-language UI, metadata-only online lookup, reproducible app/tests and existing language README pages. No user projects, covers, research, audit artifacts, caches or credentials.",
+  "description": "Approved coordinated cover-layout static runtime: 91 allowlisted files plus build-manifest; schema6, six-language UI, English landing with explicitly historical separate translations. Preserves existing baseline release-only files unchanged for compatibility; no new development tests, private artwork, artifacts, monitors, transcripts or research. Runtime manifest is build-manifest.json; this inventory covers all public tracked files except itself.",
   "files": [
     {
       "path": ".gitignore",
@@ -33,8 +33,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 25207,
-      "sha256": "a903011aeed761a83cfeac4fd79698f6815cdae8ee8f29023168c81f7e114477"
+      "bytes": 5526,
+      "sha256": "750b1f144f5ed2cfda6065b0ee03fbaf41b6aad8b6679954bf1f22127333e97b"
     },
     {
       "path": "README.zh-Hans.md",
@@ -53,8 +53,8 @@
     },
     {
       "path": "app.mjs",
-      "bytes": 21764,
-      "sha256": "5a34c3430ce20dcd55ba3ddff15a8b36253c238ed7c27ea8fcf1ae3d2bedad91"
+      "bytes": 21800,
+      "sha256": "c70628b343114722995c630bde0d00bcd87f7225a971a7b8f360d069fc890ba6"
     },
     {
       "path": "assets/branding/hi-md.png",
@@ -368,8 +368,8 @@
     },
     {
       "path": "build-manifest.json",
-      "bytes": 13525,
-      "sha256": "de7069d965c635b46b6f017f6be094e54903591374e1a0efb0988d308f7cbf79"
+      "bytes": 14569,
+      "sha256": "6663ef91b8a8e9b88fe0f511d100633efd8d6500c18bdc577e4b172a8c35d7c6"
     },
     {
       "path": "build.mjs",
@@ -383,8 +383,18 @@
     },
     {
       "path": "case-ui.mjs",
-      "bytes": 11616,
-      "sha256": "ea2e228deb2b926b21dc30bb9940b093eb170c82ce2c3cfdf328830aca9a2ff4"
+      "bytes": 12395,
+      "sha256": "c2a7d528ca4b7ff48690127b2aee2e15e1cf6f30fd058dbe068fadd011c2d407"
+    },
+    {
+      "path": "cover-i18n.mjs",
+      "bytes": 3344,
+      "sha256": "64829d04717cd8c4850a8ecfd99dcd4300e9554c8bb547b3c4a52b41193fd26d"
+    },
+    {
+      "path": "cover-layout.mjs",
+      "bytes": 6659,
+      "sha256": "1f6c81f793fc5de62ff9a8aadc69f0d5d27aed949e7a1ec8adbfd23949e580ee"
     },
     {
       "path": "geometry.mjs",
@@ -393,8 +403,8 @@
     },
     {
       "path": "i18n.mjs",
-      "bytes": 93126,
-      "sha256": "71fc6c1bcb2c671be4aa2742770918471d618f83e56d1337a7885c35e6107620"
+      "bytes": 93211,
+      "sha256": "6b774a316275d179b990dff30bcadb51b8712e0b84b8125a514b14700c34e929"
     },
     {
       "path": "image-input.mjs",
@@ -408,13 +418,13 @@
     },
     {
       "path": "kaih-assets.mjs",
-      "bytes": 2689,
-      "sha256": "1ded5accc5fe1611831b043c2de6260d28c2c4d6d2d80743de5a62ce0b4322de"
+      "bytes": 2834,
+      "sha256": "f67906eaaf1c7c7d1b9dd5071e73a83fdbe774110f199dff2f8fa0df27a41199"
     },
     {
       "path": "kaih-case.mjs",
-      "bytes": 11428,
-      "sha256": "994724f2024904f8f535842d00f1b03c1fe49966b145aeaf1f516e4e7c25f8f6"
+      "bytes": 12004,
+      "sha256": "b5fbe91fb97bfbc2893e8d08bdde88806a5e0e5161d925c2026b322310b906db"
     },
     {
       "path": "kaih-i18n.mjs",
@@ -423,8 +433,8 @@
     },
     {
       "path": "kaih-ui.mjs",
-      "bytes": 6536,
-      "sha256": "47800d07a52abd38289549128b2d9e892d12703e4b6986783aa0d5d4400b74e6"
+      "bytes": 6918,
+      "sha256": "e382b5e99a28dcf83be7836b49bfa25ce6eaff237f2c1876e22dc3a3ce335eeb"
     },
     {
       "path": "online-i18n.mjs",
@@ -453,13 +463,13 @@
     },
     {
       "path": "project-v3.mjs",
-      "bytes": 4898,
-      "sha256": "f6d33d7e7ffc6b7ef82d5596d6cef38056fb13d8ba000c113f8f4b69d8b42424"
+      "bytes": 5101,
+      "sha256": "6b5e7ba53d926ba7c52f4fd2db3e89baa1fac0dca0b6d2a39e98e7069cb2339e"
     },
     {
       "path": "render.mjs",
-      "bytes": 20208,
-      "sha256": "e4cc6f83911b8cab93855862793dbdfcec16f7ef69b1e9d85a2891332474f16f"
+      "bytes": 22495,
+      "sha256": "59bb9efe75ea7c56ec67d9f3f2d6d630d4fd689d062f281b8c700bf71b1b9700"
     },
     {
       "path": "style.css",

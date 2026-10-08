@@ -1,3 +1,4 @@
+import {coordinated,caseLayout} from './cover-layout.mjs';
 // Interior-only Kaih adaptation. Geometry/exports remain owned by existing callers.
 export const KAIH_LAYOUTS=['kaih-image-tracks','kaih-image','kaih-background-tracks','kaih-tracks'];
 export const CASE_TEMPLATES=['tracks','legacy-track-table',...KAIH_LAYOUTS];
@@ -50,20 +51,22 @@ export function caseElements(set,w,h){const c=caseSettings(set),j=h===64?3:0,mod
  if(j)elements.push({kind:'fold',role:'fold',x:0,y:5,w,color:'#8f969c',dash:[1.2,.8],screenStroke:.176388889});
  return elements;
 }
-export function paintKaih(ctx,set,w,h,{art,logo,font,weight=()=>700}){const c=caseSettings(set),elements=caseElements(set,w,h),overflow=[],unsafe=[];
+export function paintKaih(ctx,set,w,h,{art,logo,font,weight=()=>700}){const c=caseSettings(set),modern=coordinated(set),layout=modern?caseLayout(set,w,h,{art,measure:(text,size,wt)=>inkMetrics(ctx,text,size,font,wt===700?weight(c.font):wt),settings:c,strings:trackStrings(set)}):null,elements=layout?.elements||caseElements(set,w,h),overflow=[],unsafe=[...(layout?.unsafe||[])];
+ if(coordinated(set)&&c.template!=='kaih-image'&&trackStrings(set).length>13)unsafe.push('row-overflow');
+ for(const mark of elements.filter(e=>e.kind==='logo'))mark.style=logoColor(c.caseBg,mark.style);
  ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();ctx.textAlign='left';ctx.textBaseline='alphabetic';
  const tracks=elements.filter(e=>e.role==='track'),trackMetrics=tracks.map(e=>inkMetrics(ctx,e.text,e.size,font,400));let backgroundPitch=2.35;
  // Separately evidenced background-grid defect: descender bands fail the 0.35mm
  // gate in all three engines at the inherited 2.35mm pitch. Keep first baseline,
  // title/panel origins and font sizes; enlarge pitch only when final ink needs it.
- if(c.template==='kaih-background-tracks'&&tracks.length){for(let i=1;i<tracks.length;i++)backgroundPitch=Math.max(backgroundPitch,trackMetrics[i-1].actualBoundingBoxDescent+trackMetrics[i].actualBoundingBoxAscent+.35+2*25.4/300);const panel=elements.find(e=>e.role==='track-panel'),last=tracks[0].y+backgroundPitch*(tracks.length-1)+trackMetrics.at(-1).actualBoundingBoxDescent+.15;if(panel)panel.h=Math.max(panel.h,Math.min(h===64?62.5:h-.5,last)-panel.y);}
+ if(!modern&&c.template==='kaih-background-tracks'&&tracks.length){for(let i=1;i<tracks.length;i++)backgroundPitch=Math.max(backgroundPitch,trackMetrics[i-1].actualBoundingBoxDescent+trackMetrics[i].actualBoundingBoxAscent+.35+2*25.4/300);const panel=elements.find(e=>e.role==='track-panel'),last=tracks[0].y+backgroundPitch*(tracks.length-1)+trackMetrics.at(-1).actualBoundingBoxDescent+.15;if(panel)panel.h=Math.max(panel.h,Math.min(h===64?62.5:h-.5,last)-panel.y);}
  const boundedPitch=h===64&&c.template==='kaih-tracks'&&tracks.length>1?Math.min(3.2,(62.5-Math.max(...trackMetrics.map(m=>m.actualBoundingBoxDescent))-23)/(tracks.length-1)):3.2;
  for(const e of elements){ctx.fillStyle=e.color||c.caseBg;
  if(e.kind==='rect'){ctx.globalAlpha=e.alpha;ctx.fillRect(e.x,e.y,e.w,e.h);ctx.globalAlpha=1;}
- if(e.kind==='image'&&art){const sw=art.naturalWidth||art.width,sh=art.naturalHeight||art.height;ctx.drawImage(art,...coverCrop(sw,sh,e.w,e.h),e.x,e.y,e.w,e.h);}
+ if(e.kind==='image'&&art){const sw=art.naturalWidth||art.width,sh=art.naturalHeight||art.height;ctx.drawImage(art,...(e.source||coverCrop(sw,sh,e.w,e.h)),e.x,e.y,e.w,e.h);}
  if(e.kind==='text'&&e.text){const resolvedWeight=e.weight===700?weight(c.font):400;ctx.font=`${resolvedWeight} ${e.size}px ${font}`;const m=inkMetrics(ctx,e.text,e.size,font,resolvedWeight);let baseline=e.anchor==='ink-center'?e.y+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2:e.y;
- if(e.role==='track'&&c.template==='kaih-background-tracks'){baseline=tracks[0].y+tracks.indexOf(e)*backgroundPitch;e.pitch=backgroundPitch;}
- if(h===64&&c.template==='kaih-tracks'&&e.role==='track'){baseline=23+tracks.indexOf(e)*boundedPitch;e.pitch=boundedPitch;}
+ if(!modern&&e.role==='track'&&c.template==='kaih-background-tracks'){baseline=tracks[0].y+tracks.indexOf(e)*backgroundPitch;e.pitch=backgroundPitch;}
+ if(!modern&&h===64&&c.template==='kaih-tracks'&&e.role==='track'){baseline=23+tracks.indexOf(e)*boundedPitch;e.pitch=boundedPitch;}
  e.baseline=baseline;e.ink={x:e.x-m.actualBoundingBoxLeft,right:e.x+m.actualBoundingBoxRight,top:baseline-m.actualBoundingBoxAscent,bottom:baseline+m.actualBoundingBoxDescent};const mark=elements.find(v=>v.kind==='logo');let occupied=null;
  // Placement container is 12mm wide; the drawn bitmap occupies only 5mm.
  if(mark&&mark.style==='emoji'){const lm=inkMetrics(ctx,'💽',4.6,font,400);occupied={x:mark.x+6-lm.width/2-lm.actualBoundingBoxLeft,right:mark.x+6-lm.width/2+lm.actualBoundingBoxRight,top:mark.y+4-lm.actualBoundingBoxAscent,bottom:mark.y+4+lm.actualBoundingBoxDescent};}
@@ -71,7 +74,7 @@ export function paintKaih(ctx,set,w,h,{art,logo,font,weight=()=>700}){const c=ca
  if(e.role==='track'&&occupied&&e.ink.right>occupied.x&&e.ink.x<occupied.right&&e.ink.bottom>occupied.top&&e.ink.top<occupied.bottom){overflow.push('logo-collision');unsafe.push('logo-collision');}
  const safeBottom=e.role==='track'?(h===64?62.5:h-.5):h;
  if(e.ink.top<0||e.ink.bottom>safeBottom)unsafe.push('vertical-clipping');
- if(e.x+m.width>w||e.ink.x<0||e.ink.top<0||e.ink.bottom>safeBottom)overflow.push(e.role);
+ if(e.x+m.width>w||e.ink.x<0||e.ink.top<0||e.ink.bottom>safeBottom){overflow.push(e.role);if(modern)unsafe.push('vertical-clipping');}
  ctx.font=`${resolvedWeight} ${e.size}px ${font}`;ctx.fillText(e.text,e.x,baseline);}
  if(e.kind==='logo'){if(e.style==='emoji'){ctx.font=`400 4.6px ${font}`;ctx.textAlign='center';ctx.fillText('💽',e.x+6,e.y+4);ctx.textAlign='left';}else if(logo)ctx.drawImage(logo,e.x+3.5,e.y,5,5);}
  if(e.kind==='fold'){ctx.save();const m=ctx.getTransform(),scale=Math.hypot(m.a,m.b);ctx.lineWidth=e.screenStroke/scale;ctx.strokeStyle=e.color;ctx.setLineDash(e.dash);ctx.beginPath();ctx.moveTo(0,5);ctx.lineTo(w,5);ctx.stroke();ctx.restore();}

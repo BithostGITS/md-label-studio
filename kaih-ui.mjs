@@ -14,15 +14,17 @@ export function caseInteriorControls(set,{changed,message}){const root=document.
  if(!isKaih(set)){hint('kaihLegacyHint');return root;}
 
  for(const [field,key] of [['caseBg','kaihCaseBg'],['caseText','kaihCaseText']]){const control=node('input',{id:'case-'+field,type:'color',value:defaults[field]});control.onchange=()=>change(field,control.value);label(key,control);}
- select('kaihFont','case-font','font',KAIH_FONTS.map(name=>[name,null,name]));hint('kaihWeightHint');
+ select('kaihFont','case-font','font',(set.layoutRevision===2?['Inter','Source Sans 3','Roboto Condensed',...(!['Inter','Source Sans 3','Roboto Condensed'].includes(defaults.font)?[defaults.font]:[])]:KAIH_FONTS).map(name=>[name,null,name]));hint('kaihWeightHint');
  if(c.template!=='kaih-tracks'){
  const input=node('input',{type:'file',accept:'image/png,image/jpeg,image/webp',id:'case-image-file'});label('kaihUpload',input);
  input.onchange=async()=>{const file=input.files[0];input.value='';if(!file)return;const token={};uploads.set(set,token);input.disabled=true;try{if(!['image/png','image/jpeg','image/webp'].includes(file.type)||file.size>12*1024*1024)throw Error(t('uploadType'));const data=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});const art={type:'upload',data,name:file.name};await getArtwork(art);if(data.length>18000000||file.name.length>1024)throw Error(t('coverLimit'));if(uploads.get(set)!==token||set.case!==c)return;c.image=art;changed();}catch(e){if(uploads.get(set)===token)message(errorText(e));}finally{if(uploads.get(set)===token)uploads.delete(set);input.disabled=false;}};
  button('kaihClear','case-image-clear',()=>{uploads.delete(set);change('image',{type:'sample',seed:defaults.image?.type==='sample'?defaults.image.seed:0});});
  button('kaihAlbumCover','case-image-album',()=>{uploads.delete(set);change('image',{type:'album'});});hint('kaihImageSource');
  }
+ if(set.layoutRevision===2&&c.template==='kaih-background-tracks')hint('coverDecorative');
  if(c.template==='kaih-image')check('kaihTitleBlock','case-title-block','titleBlock');
  if(c.profile==='kaih-jcard-68x64'){
+ if(set.layoutRevision===2&&c.template==='kaih-background-tracks')hint('coverDecorative');
  if(c.template==='kaih-image')check('kaihSpineInfo','case-spine-info','jCardSpineInfo');
  const auto=node('input',{type:'checkbox',id:'case-spine-auto',checked:defaults.spineTextOverride===null});auto.onchange=()=>change('spineTextOverride',auto.checked?null:`${set.album} : ${set.artist}`);label('kaihSpineAuto',auto);
  if(defaults.spineTextOverride!==null){const text=node('input',{id:'case-spine-text',value:defaults.spineTextOverride,maxLength:4003});text.onchange=()=>change('spineTextOverride',text.value);label('kaihSpineOverride',text);}hint('kaihFold');
@@ -30,7 +32,7 @@ export function caseInteriorControls(set,{changed,message}){const root=document.
  if(c.template!=='kaih-image'){
  const override=node('input',{type:'checkbox',id:'case-track-override',checked:defaults.trackText!==null});override.onchange=()=>change('trackText',override.checked?trackStrings(set).join('\n'):null);label('kaihTrackOverride',override);
  if(defaults.trackText!==null){const text=node('textarea',{id:'case-track-text',value:defaults.trackText,rows:8,maxLength:402000});text.onchange=()=>change('trackText',text.value);label('kaihTrackText',text);}
- const omitted=Math.max(0,trackStrings(set).length-13);if(omitted)hint('kaihOmitted',{count:omitted},true);
+ const omitted=Math.max(0,trackStrings(set).length-13);if(omitted)hint(set.layoutRevision===2?'unsafeRows':'kaihOmitted',{count:omitted},true);
  }
  check('kaihLogo','case-logo','logoCase');select('kaihLogoStyle','case-logo-style','logoStyle',['auto','black','white','emoji','none'].map((v,i)=>[v,['kaihAuto','kaihBlack','kaihWhite','kaihEmoji','kaihNone'][i]]));select('kaihLogoCorner','case-logo-corner','logoCorner',['bottom-right','bottom-left','top-right'].map((v,i)=>[v,['kaihBottomRight','kaihBottomLeft','kaihTopRight'][i]]));hint('kaihSafety');return root;
 }

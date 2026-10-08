@@ -1,3 +1,4 @@
+import {coordinated,frontLayout} from './cover-layout.mjs';
 import {isKaih,caseSettings,paintKaih,effectiveStyle,inkMetrics} from './kaih-case.mjs';
 import {prepareKaih} from './kaih-assets.mjs';
 import {capacity,formatDuration,printRows} from './tracks.mjs';
@@ -56,7 +57,20 @@ export async function prepare(set){checkFonts(set);const [art]=await Promise.all
 /** Word wrapping with character fallback, blank lines retained; no shrink-to-fit. */
 export function wrappedLines(ctx,text,width){const lines=[];for(const paragraph of text.replace(/\r\n?/g,'\n').split('\n')){let line='';const tokens=paragraph.match(/\s+|[^\s]+/gu)||[''];for(const token of tokens){if(ctx.measureText(line+token).width<=width){line+=token;continue;}if(line){lines.push(line.trimEnd());line='';}for(const c of token){if(line&&ctx.measureText(line+c).width>width){lines.push(line);line='';}line+=c;}}lines.push(line.trimEnd());}return lines;}
 export function cutline(ctx,w,h,dark=false){ctx.save();ctx.strokeStyle=dark?'#a7aba4':'#6d786c';ctx.lineWidth=STROKE;ctx.strokeRect(STROKE/2,STROKE/2,w-STROKE,h-STROKE);ctx.restore();}
+function paintCoordinatedFront(ctx,set,art,bounds,context){
+ const {w,h}=frontDimensions(set),style=effectiveStyle(set,context),font=fontStack(set);
+ const plan=frontLayout(set,art,w,h,(text,size,weight)=>inkMetrics(ctx,text,size,font,weight),displayText(set,[set.album,set.artist,set.year].join('\n')),STROKE+1/PPM);
+ if(plan.unsafe.length)throw localeError('caseUnsafe',{set:set.id,reasonKey:'unsafeVertical'});
+ ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();ctx.fillStyle=style.discBg;ctx.fillRect(0,0,w,h);ctx.fillStyle=style.discText;ctx.font=`1.76px ${font}`;ctx.textBaseline='alphabetic';
+ ctx.save();ctx.translate(0,plan.headerCenter-2.5);
+ if(!set.hideHeader){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.save();let headerBaseline=2.9138;if(true){const m=inkMetrics(ctx,'INSERT THIS END',1.76,fontStack(set));ctx.textBaseline='alphabetic';headerBaseline=2.5+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2;}ctx.fillText('INSERT THIS END',5.5,headerBaseline,set.hiMD?Math.max(1,w-2-44/11.811-.5-106/11.811-1-5.5):Math.max(4,w-13));ctx.restore();if(!logoImage)throw localeError('mdNotReady');const lw=44/11.811,lh=43/11.811;ctx.drawImage(logoImage,w-2-lw,(5-lh)/2,lw,lh);if(set.hiMD){const mark=hiMDImages.get('hi-md.png');if(!mark)throw localeError('hiNotReady');const fw=106/11.811,fh=43/11.811,fx=w-2-lw-.5-fw,fy=(5-fh)/2,stroke=2/11.811,pad=5/11.811;if(fx<2||fy<0||fx+fw>w-2||fy+fh>5)throw localeError('hiMargin');ctx.drawImage(hiMDFrame(),fx,fy,fw,fh);ctx.drawImage(mark,fx+(106-31*272/88)/2/11.811,fy+pad,(31*272/88)/11.811,31/11.811);}}
+ ctx.restore();
+ if(plan.image){const e=plan.image;ctx.drawImage(art,...e.source,e.x,e.y,e.w,e.h);}
+ const g=plan.footer;ctx.font=`1.76px ${font}`;ctx.textBaseline='alphabetic';g.lines.forEach((line,i)=>ctx.fillText(line,2,plan.footerCenter-(g.top+g.bottom)/2+i*g.pitch));
+ ctx.restore();cutline(ctx,bounds?.w??w,bounds?.h??h,logoColorDark(style.discBg));return {truncated:false,lineCount:g.lines.length,capacity:g.lines.length,layout:plan,layoutRevision:2};
+}
 export function paintFront(ctx,set,art,bounds,context={}){
+ if(coordinated(set))return paintCoordinatedFront(ctx,set,art,bounds,context);
  const d=frontDimensions(set),w=d.w,h=d.h,style=effectiveStyle(set,context),bg=style.discBg,fg=style.discText,dark=logoColorDark(bg);
  ctx.save();ctx.beginPath();ctx.rect(0,0,w,h);ctx.clip();ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);ctx.fillStyle=fg;const head=set.hideHeader?0:5,artSize=Math.min(w,h-head-8),artX=(w-artSize)/2;ctx.font=`1.76px ${fontStack(set)}`;ctx.textBaseline='middle';
  if(head){ctx.beginPath();ctx.moveTo(3.25,1.875);ctx.lineTo(4.5,3.125);ctx.lineTo(2,3.125);ctx.closePath();ctx.fill();ctx.save();let headerBaseline=2.9138;if(context.withCase){const m=inkMetrics(ctx,'INSERT THIS END',1.76,fontStack(set));ctx.textBaseline='alphabetic';headerBaseline=2.5+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2;}ctx.fillText('INSERT THIS END',5.5,headerBaseline,set.hiMD?Math.max(1,w-2-44/11.811-.5-106/11.811-1-5.5):Math.max(4,w-13));ctx.restore();if(!logoImage)throw localeError('mdNotReady');const lw=44/11.811,lh=43/11.811;ctx.drawImage(logoImage,w-2-lw,(5-lh)/2,lw,lh);if(set.hiMD){const mark=hiMDImages.get('hi-md.png');if(!mark)throw localeError('hiNotReady');const fw=106/11.811,fh=43/11.811,fx=w-2-lw-.5-fw,fy=(5-fh)/2,stroke=2/11.811,pad=5/11.811;if(fx<2||fy<0||fx+fw>w-2||fy+fh>5)throw localeError('hiMargin');ctx.drawImage(hiMDFrame(),fx,fy,fw,fh);ctx.drawImage(mark,fx+(106-31*272/88)/2/11.811,fy+pad,(31*272/88)/11.811,31/11.811);}}
@@ -92,7 +106,7 @@ function paintLegacyCase(ctx,set,bounds,context={}){const {w,h}=caseProfile(set)
  const c=capacity(set.trackList,set.case.profile);ctx.font=`1.8px ${fontStack(set)}`;draw(`${rows.length} / ${formatDuration(c.knownMs)} / ${set.trackList.capacityMinutes}:00${c.unknown?' / —':''}${c.overflowMs?' / !':''}`,3,h-3.5,w-6);
  ctx.restore();cutline(ctx,bounds?.w??w,bounds?.h??h,dark);return {truncated,rows:rendered,capacity:c,typography:ty};}
 // Safety is enforced at every case dispatch, not only by UI button readiness.
-function assertCaseSafe(info,set){if(info.unsafe?.length)throw localeError('caseUnsafe',{set:set.id?.replace('set-','')||'?',reasonKey:info.unsafe.includes('logo-collision')?'unsafeLogo':'unsafeVertical'});return info;}
+function assertCaseSafe(info,set){if(info.unsafe?.length)throw localeError('caseUnsafe',{set:set.id?.replace('set-','')||'?',reasonKey:info.unsafe.includes('logo-collision')?'unsafeLogo':info.unsafe.includes('row-overflow')?'unsafeRows':'unsafeVertical'});return info;}
 export function paintCase(ctx,set,bounds,assets,context={withCase:true}){if(!isKaih(set))return paintLegacyCase(ctx,set,bounds,context);const {w,h}=caseProfile(set);const info=assertCaseSafe(paintKaih(ctx,set,w,h,assets),set);ctx.save();cutline(ctx,bounds?.w??w,bounds?.h??h,logoColorDark(effectiveStyle(set,context).caseBg));ctx.restore();return info;}
 async function prepareCase(set){caseProfile(set);if(!isKaih(set)){caseFonts(set);return null;}return prepareKaih(set,{getArtwork,fontStack,supports,loaded});}
 export async function caseCanvas(set){const assets=await prepareCase(set);const {w,h}=caseProfile(set),c=newCanvas(px(w),px(h)),ctx=c.getContext('2d');ctx.fillStyle=effectiveStyle(set,{withCase:true}).caseBg;ctx.fillRect(0,0,c.width,c.height);ctx.scale(PPM,PPM);const info=paintCase(ctx,set,{w:c.width/PPM,h:c.height/PPM},assets);return {canvas:c,info};}
